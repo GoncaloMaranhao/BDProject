@@ -1,0 +1,194 @@
+REQUISITOS:
+
+1.
+Todos precisam de um cartão de trabalho para ter acesso à fábrica no portão principal:
+2.
+Para se ser motoristas de camião é precisso ter uma carta de motorista especial para transportar MDF:
+3.
+Os fornecedores de madeira (vendedores) devem ser certificados e sua madeira deve atender a padrões específicos de qualidade para garantir a produção de MDF de alta qualidade:
+4.
+A fábrica deve cumprir as regulamentações ambientais relativas à gestão de resíduos, controle de emissões e práticas de reciclagem:
+5.
+O processo de envio deve incluir um sistema de verificação para garantir que o produto correto seja enviado ao cliente correto:
+6.
+O gerente de um departamento tem que ser engenheiro.
+7.
+Os operários produzem um produto MDF.
+
+//-----------------------------------------------------------------------------------//
+
+ENTIDADES E ATRIBUTOS:
+
+1.
+Funcionario
+    ID_Funcionario (PK)
+    Nome
+    Funcao
+    Salario
+	Sexo
+	Contato
+	Data_inicio_trabalho
+    ID_Departamento (FK)
+    ID_CartaoTrabalho (FK)
+2.
+CartaoTrabalho
+    ID_CartaoTrabalho (PK)
+    Validade
+    Estado
+    ID_Funcionario (FK)
+3.
+Departamento
+    ID_Departamento (PK)
+    Tipo
+    ID_Gerente (FK)
+    TaxaEmissao
+    TaxaReciclagem
+    ResiduoGerado
+4.
+Engenheiro
+    ID_Engenheiro (PK)
+    ID_Funcionario (FK)
+5.
+Motorista
+    ID_Motorista (PK)
+    ID_Funcionario (FK)
+	Carta_Especial
+6.
+Camiao
+    ID_Camiao (PK)
+    Matricula
+    Peso
+7.
+FornecedorMadeira
+    ID_Fornecedor (PK)
+    Nome
+    Certificacao
+8.
+LoteMadeira
+    ID_Lote (PK)
+    Tipo
+    ID_Fornecedor (FK)
+    Qualidade
+    DataRecebimento
+9.
+ProdutoMDF
+    ID_MDF (PK)
+    ID_Lote (FK)
+	ID_Operario (FK)
+    EstagioProducao
+    DataProducao
+10.
+Encomenda
+	ID_Pedido (PK)
+    ID_Cliente (FK)
+    ID_MDF (FK)
+    EstadoEnvio
+    Endereco
+11.
+Cliente
+    ID_Cliente (PK)
+    Nome
+    InformacaoContacto
+	
+12.
+Operario
+    ID_Operario (PK)
+    ID_Funcionario (FK)
+
+13.
+AtribuicaoCamiao
+    Atribuicao_ID (PK)
+    ID_Camiao (FK)
+    ID_Motorista (FK)
+    Data_Inicio 
+    Drive_Fim
+
+	
+//-----------------------------------------------------------------------------------//
+	
+RELAÇÕES:
+
+1.
+Funcionario - Departamento (N:1) 
+Direção: Funcionario.ID_Departamento (FK) -> Departamento.ID_Departamento (PK)
+Obrigatoriedade: Lado do Departamento
+[Um departamento TEM vários funcionários, um funcionário trabalha em apenas um departamento]
+
+2.
+CartaoTrabalho - Funcionario (N:1) 
+Direção: CartaoTrabalho.ID_Funcionario (FK) -> Funcionario.ID_Funcionario (PK)
+Obrigatoriedade: Bidirecional
+[Um funcionário TEM um cartão de trabalho, e um cartão de trabalho está associado a um funcionário]
+
+3.
+Departamento - Funcionario (Engenheiro) (1:1) 
+Direção: Departamento.ID_Gerente (FK) -> Funcionario.ID_Funcionario (PK)
+Obrigatoriedade: Lado do Departamento
+[Um departamento é GERIDO por um engenheiro, um engenheiro gere um departamento]
+
+4.
+Engenheiro - Funcionario (1:1) 
+Direção: Engenheiro.ID_Funcionario (FK) -> Funcionario.ID_Funcionario (PK)
+Obrigatoriedade: Bidirecional
+[Um engenheiro ISA um funcionário] [ISA disjoint]
+
+5.
+Motorista - Funcionario (1:1) 
+Direção: Motorista.ID_Funcionario (FK) -> Funcionario.ID_Funcionario (PK)
+Obrigatoriedade: Bidirecional
+[Um motorista ISA um funcionário] [ISA disjoint]
+
+6.
+Camiao - Motorista (M:N) 
+Direção: Camiao.ID_Funcionario (FK) -> Motorista.ID_Funcionario (PK)
+Obrigatoriedade: Bidirecional
+[Um motorista pode CONDUZIR vários camião, e um camião pode ser conduzido por varios motoristas]
+
+7.
+LoteMadeira - FornecedorMadeira (N:1) 
+Direção: LoteMadeira.ID_Fornecedor (FK) -> FornecedorMadeira.ID_Fornecedor (PK)
+Obrigatoriedade: Lado do LoteMadeira
+[Um fornecedor de madeira FORNECE vários lotes de madeira, um lote de madeira vem de um fornecedor]
+
+8.
+ProdutoMDF - LoteMadeira (N:1) 
+Direção: ProdutoMDF.ID_Lote (FK) -> LoteMadeira.ID_Lote (PK)
+Obrigatoriedade: Lado do ProdutoMDF
+[Vários produtos MDF podem ser PRODUZIR a partir de um lote de madeira, um produto MDF é feito a partir de um único lote de madeira]
+
+9.
+Encomenda - Cliente (N:1) 
+Direção: Encomenda.ID_Cliente (FK) -> Cliente.ID_Cliente (PK)
+Obrigatoriedade: Bidirecional
+[Um cliente pode FAZER/PEDIR vários pedidos, mas um pedido pertence apenas a um cliente]
+
+10.
+Encomenda - ProdutoMDF (1:N) 
+Direção: Encomenda.ID_MDF (FK) -> ProdutoMDF.ID_MDF (PK)
+Obrigatoriedade: Bidirecional
+[Um pedido está ASSOCIADO/ENCOMENDADO a um ou mais produtos MDF, e o(s) produto(s) MDF estão associado a um encomenda/pedido]
+
+11.
+Operario - Funcionario (1:1)
+Direção: Operario.ID_Funcionario (FK) -> Funcionario.ID_Funcionario (PK)
+Obrigatoriedade: Bidirecional
+[Um operario ISA funcionario] [ISA disjoint]
+
+12.
+ProdutoMDF -  Operario (1:N)
+Direção: ProdutoMDF.ID_Operario (FK) -> Operario.ID_Operario (PK)
+Obrigatoriedade: Do lado do ProdutoMDF
+[Um operario produz um ProdutoMDF, um ProdutoMDF é feito por vários operarios]
+
+13.
+Motorista - AtribuicaoCamiao (1:N)
+Direção: AtribuicaoCamiao.ID_Motorista (FK) -> Motorista.ID_Motorista (PK)
+Obrigatoriedade: do lado de atribuicaoCamiao
+[ma atribuição do camião está associada a um único motorista, mas um motorista pode ter várias atribuições]
+
+14.
+Camiao - AtribuicaoCamiao (1:N)
+Direção: AtribuicaoCamiao.ID_Camiao (FK) -> Camiao.ID_Camiao (PK)
+Obrigatoriedade: Do lado de AtribuicaoCamiao
+[Uma atribuição do camião está associada a um único camião, mas um camião pode ter várias atribuições]
+//-----------------------------------------------------------------------------------//
