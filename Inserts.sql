@@ -2,11 +2,11 @@ use MyLocalDB
 go
 
 DELETE FROM AtribuicaoCamiao;
---DELETE FROM Operario;
---DELETE FROM Cliente;
 DELETE FROM Encomenda;
 DELETE FROM ProdutoMDF;
+DELETE FROM Operario;
 DELETE FROM LoteMadeira;
+DELETE FROM Cliente;
 DELETE FROM FornecedorMadeira;
 DELETE FROM Camiao;
 DELETE FROM Motorista;
@@ -16,10 +16,10 @@ DELETE FROM CartaoTrabalho;
 DELETE FROM UserLogin;
 DELETE FROM Funcionario;
 
-INSERT INTO Funcionario VALUES (1, 'John Doe', 5000.00, 'M', '1234567890', '123 St, City, State', '1980-01-01', 'john@example.com', '2021-01-01', 'Engenheiro');
-INSERT INTO Funcionario VALUES (2, 'Jane Smith', 6000.00, 'F', '0987654321', '456 St, City, State', '1985-01-01', 'jane@example.com', '2020-01-01', 'Motorista');
-INSERT INTO Funcionario VALUES (3, 'James Brown', 5500.00, 'M', '1122334455', '789 St, City, State', '1982-01-01', 'james@example.com', '2019-01-01', 'Operario');
-INSERT INTO Funcionario VALUES (4, 'Emma Stone', 6500.00, 'F', '6677889900', '321 St, City, State', '1983-01-01', 'emma@example.com', '2021-07-01', 'Engenheiro');
+INSERT INTO Funcionario VALUES (1, 'John Doe', 5000.00, 'M', '1234567890', '123 St, City, State', '1980-01-01', 'john@example.com', '1994-01-01', 'Engenheiro');
+INSERT INTO Funcionario VALUES (2, 'Jane Smith', 6000.00, 'F', '0987654321', '456 St, City, State', '1985-01-01', 'jane@example.com', '2015-01-01', 'Motorista');
+INSERT INTO Funcionario VALUES (3, 'James Brown', 5500.00, 'M', '1122334455', '789 St, City, State', '1982-01-01', 'james@example.com', '2017-01-01', 'Operario');
+INSERT INTO Funcionario VALUES (4, 'Emma Stone', 6500.00, 'F', '6677889900', '321 St, City, State', '1983-01-01', 'emma@example.com', '2019-07-01', 'Engenheiro');
 INSERT INTO Funcionario VALUES (5, 'William Turner', 6200.00, 'M', '2244668800', '654 St, City, State', '1981-01-01', 'william@example.com', '2020-06-01', 'Motorista');
 
 INSERT INTO CartaoTrabalho VALUES (1, '2023-01-01', '2022-01-01', 'Active employee', 'A', 1);
@@ -35,16 +35,16 @@ INSERT INTO Departamento VALUES (4, 'Quality Control', 80000.00, 4, 'Quality Con
 INSERT INTO Departamento VALUES (5, 'HR', 90000.00, 5, 'HR', 1.1, 0.9, 20.0);
 
 INSERT INTO Engenheiro VALUES (1, 1, 'Civil Engineering');
-INSERT INTO Engenheiro VALUES (2, 4, 'Electrical Engineering');
-INSERT INTO Engenheiro VALUES (3, 10, 'Mechanical Engineering');
-INSERT INTO Engenheiro VALUES (4, 11, 'Chemical Engineering');
-INSERT INTO Engenheiro VALUES (5, 12, 'Software Engineering');
+INSERT INTO Engenheiro VALUES (2, 2, 'Electrical Engineering');
+INSERT INTO Engenheiro VALUES (3, 3, 'Mechanical Engineering');
+INSERT INTO Engenheiro VALUES (4, 4, 'Chemical Engineering');
+INSERT INTO Engenheiro VALUES (5, 5, 'Software Engineering');
 
-INSERT INTO Motorista VALUES (1, 2, '2023-01-01', 'Y');
-INSERT INTO Motorista VALUES (2, 5, '2024-01-01', 'N');
-INSERT INTO Motorista VALUES (3, 8, '2023-06-01', 'Y');
-INSERT INTO Motorista VALUES (4, 9, '2024-07-01', 'N');
-INSERT INTO Motorista VALUES (5, 13, '2023-12-01', 'Y');
+INSERT INTO Motorista VALUES (1, 1, '2023-01-01', 'Y');
+INSERT INTO Motorista VALUES (2, 2, '2024-01-01', 'N');
+INSERT INTO Motorista VALUES (3, 3, '2023-06-01', 'Y');
+INSERT INTO Motorista VALUES (4, 4, '2024-07-01', 'N');
+INSERT INTO Motorista VALUES (5, 5, '2023-12-01', 'Y');
 
 INSERT INTO Camiao VALUES (1, 'AAA123', 2010, 80, 2000, 50000, 15000.00);
 INSERT INTO Camiao VALUES (2, 'BBB123', 2011, 85, 2100, 60000, 16000.00);
@@ -94,8 +94,9 @@ INSERT INTO AtribuicaoCamiao VALUES (3, 3, 3, 3, '2022-08-01', 20, 24, '2023-04-
 INSERT INTO AtribuicaoCamiao VALUES (4, 4, 4, 4, '2022-09-01', 27, 34, '2023-02-01', 'Y');
 INSERT INTO AtribuicaoCamiao VALUES (5, 5, 5, 5, '2022-10-01', 35, 38, '2023-01-01', 'Y');
 
-INSERT INTO UserLogin VALUES (1, 'admin1', 'hashedpassword1', 'Admin', 1);
-INSERT INTO UserLogin VALUES (2, 'eng1', 'hashedpassword2', 'Engenheiro', 4);
-INSERT INTO UserLogin VALUES (3, 'mot1', 'hashedpassword3', 'Motorista', 2);
-INSERT INTO UserLogin VALUES (4, 'opr1', 'hashedpassword4', 'Operario', 3);
-INSERT INTO UserLogin VALUES (5, 'admin2', 'hashedpassword5', 'Admin', 16);
+INSERT INTO UserLogin (ID_User, Username, HashedPassword, Funcao, ID_Funcionario) 
+VALUES (1, 'admin1', 'hashedpassword1', 'Admin', 1),
+ (2, 'eng1', 'hashedpassword2', 'Engenheiro', 4),
+ (3, 'mot1', 'hashedpassword3', 'Motorista', 2),
+ (4, 'opr1', 'hashedpassword4', 'Operario', 3),
+ (5, 'admin2', 'hashedpassword5', 'Admin', 5);
