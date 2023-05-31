@@ -2,9 +2,9 @@ use MyLocalDB
 go
 
 DELETE FROM AtribuicaoCamiao;
-DELETE FROM Operario;
+--DELETE FROM Operario;
+--DELETE FROM Cliente;
 DELETE FROM Encomenda;
-DELETE FROM Cliente;
 DELETE FROM ProdutoMDF;
 DELETE FROM LoteMadeira;
 DELETE FROM FornecedorMadeira;
@@ -13,73 +13,89 @@ DELETE FROM Motorista;
 DELETE FROM Engenheiro;
 DELETE FROM Departamento;
 DELETE FROM CartaoTrabalho;
+DELETE FROM UserLogin;
 DELETE FROM Funcionario;
 
-INSERT INTO Funcionario VALUES (1, 'John Doe', 'Engenheiro', 5000, 'M', '123456789', 'john.doe@example.com', '2023-01-01', 1, 'Engenheiro');
-INSERT INTO Funcionario VALUES (2, 'Jane Smith', 'Operario', 3000, 'F', '234567890', 'jane.smith@example.com', '2023-02-01', 2, 'Operario');
-INSERT INTO Funcionario VALUES (3, 'Bob Johnson', 'Motorista', 3500, 'M', '345678901', 'bob.johnson@example.com', '2023-03-01', 3, 'Motorista');
-INSERT INTO Funcionario VALUES (4, 'Alice Davis', 'Engenheiro', 6000, 'F', '456789012', 'alice.davis@example.com', '2023-04-01', 4, 'Engenheiro');
-INSERT INTO Funcionario VALUES (5, 'Charlie Miller', 'Operario', 2800, 'M', '567890123', 'charlie.miller@example.com', '2023-05-01', 5, 'Operario');
+INSERT INTO Funcionario VALUES (1, 'John Doe', 5000.00, 'M', '1234567890', '123 St, City, State', '1980-01-01', 'john@example.com', '2021-01-01', 'Engenheiro');
+INSERT INTO Funcionario VALUES (2, 'Jane Smith', 6000.00, 'F', '0987654321', '456 St, City, State', '1985-01-01', 'jane@example.com', '2020-01-01', 'Motorista');
+INSERT INTO Funcionario VALUES (3, 'James Brown', 5500.00, 'M', '1122334455', '789 St, City, State', '1982-01-01', 'james@example.com', '2019-01-01', 'Operario');
+INSERT INTO Funcionario VALUES (4, 'Emma Stone', 6500.00, 'F', '6677889900', '321 St, City, State', '1983-01-01', 'emma@example.com', '2021-07-01', 'Engenheiro');
+INSERT INTO Funcionario VALUES (5, 'William Turner', 6200.00, 'M', '2244668800', '654 St, City, State', '1981-01-01', 'william@example.com', '2020-06-01', 'Motorista');
 
-INSERT INTO CartaoTrabalho VALUES (1, '2024-12-31', 'A', 1);
-INSERT INTO CartaoTrabalho VALUES (2, '2024-12-31', 'A', 2);
-INSERT INTO CartaoTrabalho VALUES (3, '2024-12-31', 'A', 3);
-INSERT INTO CartaoTrabalho VALUES (4, '2024-12-31', 'A', 4);
-INSERT INTO CartaoTrabalho VALUES (5, '2024-12-31', 'A', 5);
+INSERT INTO CartaoTrabalho VALUES (1, '2023-01-01', '2022-01-01', 'Active employee', 'A', 1);
+INSERT INTO CartaoTrabalho VALUES (2, '2024-01-01', '2023-01-01', 'Active employee', 'A', 2);
+INSERT INTO CartaoTrabalho VALUES (3, '2023-06-01', '2022-06-01', 'Active employee', 'A', 3);
+INSERT INTO CartaoTrabalho VALUES (4, '2023-07-01', '2022-07-01', 'Active employee', 'A', 4);
+INSERT INTO CartaoTrabalho VALUES (5, '2024-06-01', '2023-06-01', 'Active employee', 'A', 5);
 
-INSERT INTO Departamento VALUES (1, 1, 'Producao', 0.05, 0.1, 100);
-INSERT INTO Departamento VALUES (2, 2, 'Logistica', 0.03, 0.08, 200);
-INSERT INTO Departamento VALUES (3, 3, 'Engenharia', 0.02, 0.06, 150);
-INSERT INTO Departamento VALUES (4, 4, 'Operacoes', 0.04, 0.07, 250);
-INSERT INTO Departamento VALUES (5, 5, 'Recursos Humanos', 0.01, 0.05, 50);
+INSERT INTO Departamento VALUES (1, 'Engineering', 50000.00, 1, 'Engineering', 1.2, 0.5, 10.0);
+INSERT INTO Departamento VALUES (2, 'Operations', 60000.00, 3, 'Operations', 1.5, 0.6, 12.0);
+INSERT INTO Departamento VALUES (3, 'Logistics', 70000.00, 2, 'Logistics', 1.3, 0.7, 15.0);
+INSERT INTO Departamento VALUES (4, 'Quality Control', 80000.00, 4, 'Quality Control', 1.4, 0.8, 18.0);
+INSERT INTO Departamento VALUES (5, 'HR', 90000.00, 5, 'HR', 1.1, 0.9, 20.0);
 
-INSERT INTO Engenheiro VALUES (1, 1, 'Engenharia de Producao');
-INSERT INTO Engenheiro VALUES (2, 4, 'Engenharia Mecanica');
+INSERT INTO Engenheiro VALUES (1, 1, 'Civil Engineering');
+INSERT INTO Engenheiro VALUES (2, 4, 'Electrical Engineering');
+INSERT INTO Engenheiro VALUES (3, 10, 'Mechanical Engineering');
+INSERT INTO Engenheiro VALUES (4, 11, 'Chemical Engineering');
+INSERT INTO Engenheiro VALUES (5, 12, 'Software Engineering');
 
-INSERT INTO Motorista VALUES (1, 3, 'Y');
-INSERT INTO Motorista VALUES (2, 4, 'N');
+INSERT INTO Motorista VALUES (1, 2, '2023-01-01', 'Y');
+INSERT INTO Motorista VALUES (2, 5, '2024-01-01', 'N');
+INSERT INTO Motorista VALUES (3, 8, '2023-06-01', 'Y');
+INSERT INTO Motorista VALUES (4, 9, '2024-07-01', 'N');
+INSERT INTO Motorista VALUES (5, 13, '2023-12-01', 'Y');
 
-INSERT INTO Camiao VALUES (1, 'ABC1234', 2000);
-INSERT INTO Camiao VALUES (2, 'BCD2345', 2500);
-INSERT INTO Camiao VALUES (3, 'CDE3456', 2200);
-INSERT INTO Camiao VALUES (4, 'DEF4567', 2300);
-INSERT INTO Camiao VALUES (5, 'EFG5678', 2400);
+INSERT INTO Camiao VALUES (1, 'AAA123', 2010, 80, 2000, 50000, 15000.00);
+INSERT INTO Camiao VALUES (2, 'BBB123', 2011, 85, 2100, 60000, 16000.00);
+INSERT INTO Camiao VALUES (3, 'CCC123', 2012, 90, 2200, 70000, 17000.00);
+INSERT INTO Camiao VALUES (4, 'DDD123', 2013, 95, 2300, 80000, 18000.00);
+INSERT INTO Camiao VALUES (5, 'EEE123', 2014, 100, 2400, 90000, 19000.00);
 
-INSERT INTO FornecedorMadeira VALUES (1, 'Fornecedor A', 'ISO 9001');
-INSERT INTO FornecedorMadeira VALUES (2, 'Fornecedor B', 'ISO 14001');
-INSERT INTO FornecedorMadeira VALUES (3, 'Fornecedor C', 'ISO 9001');
-INSERT INTO FornecedorMadeira VALUES (4, 'Fornecedor D', 'ISO 14001');
-INSERT INTO FornecedorMadeira VALUES (5, 'Fornecedor E', 'ISO 9001');
+INSERT INTO FornecedorMadeira VALUES (1, 'Supplier 1', '123 St, City, State', '1234567890', '2020-01-01', 'Certification 1');
+INSERT INTO FornecedorMadeira VALUES (2, 'Supplier 2', '456 St, City, State', '0987654321', '2019-01-01', 'Certification 2');
+INSERT INTO FornecedorMadeira VALUES (3, 'Supplier 3', '789 St, City, State', '1122334455', '2021-01-01', 'Certification 3');
+INSERT INTO FornecedorMadeira VALUES (4, 'Supplier 4', '321 St, City, State', '6677889900', '2020-06-01', 'Certification 4');
+INSERT INTO FornecedorMadeira VALUES (5, 'Supplier 5', '654 St, City, State', '2244668800', '2019-07-01', 'Certification 5');
 
-INSERT INTO LoteMadeira VALUES (1, 'Tipo A', 1, 0.8, '2023-01-01');
-INSERT INTO LoteMadeira VALUES (2, 'Tipo B', 2, 0.9, '2023-02-01');
-INSERT INTO LoteMadeira VALUES (3, 'Tipo C', 3, 0.85, '2023-03-01');
-INSERT INTO LoteMadeira VALUES (4, 'Tipo D', 4, 0.75, '2023-04-01');
-INSERT INTO LoteMadeira VALUES (5, 'Tipo E', 5, 0.95, '2023-05-01');
+INSERT INTO LoteMadeira VALUES (1, 'Type 1', 1, 1000, 1000.00, '123 St, City, State', 9.5, '2022-01-01');
+INSERT INTO LoteMadeira VALUES (2, 'Type 2', 2, 1100, 1100.00, '456 St, City, State', 9.6, '2022-02-01');
+INSERT INTO LoteMadeira VALUES (3, 'Type 3', 3, 1200, 1200.00, '789 St, City, State', 9.7, '2022-03-01');
+INSERT INTO LoteMadeira VALUES (4, 'Type 4', 4, 1300, 1300.00, '321 St, City, State', 9.8, '2022-04-01');
+INSERT INTO LoteMadeira VALUES (5, 'Type 5', 5, 1400, 1400.00, '654 St, City, State', 9.9, '2022-05-01');
 
-INSERT INTO ProdutoMDF VALUES (1, 1, 2, 'Completo', '2023-06-01');
-INSERT INTO ProdutoMDF VALUES (2, 2, 5, 'Incompleto', '2023-06-02');
-INSERT INTO ProdutoMDF VALUES (3, 3, 2, 'Completo', '2023-06-03');
-INSERT INTO ProdutoMDF VALUES (4, 4, 5, 'Incompleto', '2023-06-04');
-INSERT INTO ProdutoMDF VALUES (5, 5, 2, 'Completo', '2023-06-05');
+INSERT INTO Cliente VALUES (1, 'Client 1', '123 St, City, State', 10, '1234567890');
+INSERT INTO Cliente VALUES (2, 'Client 2', '456 St, City, State', 20, '0987654321');
+INSERT INTO Cliente VALUES (3, 'Client 3', '789 St, City, State', 30, '1122334455');
+INSERT INTO Cliente VALUES (4, 'Client 4', '321 St, City, State', 40, '6677889900');
+INSERT INTO Cliente VALUES (5, 'Client 5', '654 St, City, State', 50, '2244668800');
 
-INSERT INTO Cliente VALUES (1, 'Cliente A', 'Rua A, 123', '123456789');
-INSERT INTO Cliente VALUES (2, 'Cliente B', 'Rua B, 234', '234567890');
-INSERT INTO Cliente VALUES (3, 'Cliente C', 'Rua C, 345', '345678901');
-INSERT INTO Cliente VALUES (4, 'Cliente D', 'Rua D, 456', '456789012');
-INSERT INTO Cliente VALUES (5, 'Cliente E', 'Rua E, 567', '567890123');
+INSERT INTO Operario VALUES (1, 1, 'D', 'Specialization 1');
+INSERT INTO Operario VALUES (2, 2, 'N', 'Specialization 2');
+INSERT INTO Operario VALUES (3, 3, 'D', 'Specialization 3');
+INSERT INTO Operario VALUES (4, 4, 'N', 'Specialization 4');
+INSERT INTO Operario VALUES (5, 5, 'D', 'Specialization 5');
 
-INSERT INTO Encomenda VALUES (1, 1, 1, 'Y', 'Rua A, 123', '2023-06-10');
-INSERT INTO Encomenda VALUES (2, 2, 2, 'N', 'Rua B, 234', '2023-06-11');
-INSERT INTO Encomenda VALUES (3, 3, 3, 'Y', 'Rua C, 345', '2023-06-12');
-INSERT INTO Encomenda VALUES (4, 4, 4, 'N', 'Rua D, 456', '2023-06-13');
-INSERT INTO Encomenda VALUES (5, 5, 5, 'Y', 'Rua E, 567', '2023-06-14');
+INSERT INTO ProdutoMDF VALUES (1, 1, 100, 100.00, 1, 'Stage 1', '2022-06-01');
+INSERT INTO ProdutoMDF VALUES (2, 2, 110, 110.00, 2, 'Stage 2', '2022-07-01');
+INSERT INTO ProdutoMDF VALUES (3, 3, 120, 120.00, 3, 'Stage 3', '2022-08-01');
+INSERT INTO ProdutoMDF VALUES (4, 4, 130, 130.00, 4, 'Stage 4', '2022-09-01');
+INSERT INTO ProdutoMDF VALUES (5, 5, 140, 140.00, 5, 'Stage 5', '2022-10-01');
 
-INSERT INTO Operario VALUES (1, 2, 'D');
-INSERT INTO Operario VALUES (2, 5, 'N');
+INSERT INTO Encomenda VALUES (1, 1, 1, 'Y', '123 St, City, State', '2022-11-01', '2023-01-01');
+INSERT INTO Encomenda VALUES (2, 2, 2, 'N', '456 St, City, State', '2022-12-01', '2023-02-01');
+INSERT INTO Encomenda VALUES (3, 3, 3, 'Y', '789 St, City, State', '2023-01-01', '2023-03-01');
+INSERT INTO Encomenda VALUES (4, 4, 4, 'N', '321 St, City, State', '2023-02-01', '2023-04-01');
+INSERT INTO Encomenda VALUES (5, 5, 5, 'Y', '654 St, City, State', '2023-03-01', '2023-05-01');
 
-INSERT INTO AtribuicaoCamiao VALUES (1, 1, 1, 1, '2023-06-20', '2023-06-21', 'Y');
-INSERT INTO AtribuicaoCamiao VALUES (2, 2, 2, 2, '2023-06-22', '2023-06-23', 'N');
-INSERT INTO AtribuicaoCamiao VALUES (3, 3, 3, 1, '2023-06-24', '2023-06-25', 'Y');
-INSERT INTO AtribuicaoCamiao VALUES (4, 4, 4, 2, '2023-06-26', '2023-06-27', 'N');
-INSERT INTO AtribuicaoCamiao VALUES (5, 5, 5, 1, '2023-06-28', '2023-06-29', 'Y');
+INSERT INTO AtribuicaoCamiao VALUES (1, 1, 1, 1, '2022-06-01', 10, 15, '2023-06-01', 'Y');
+INSERT INTO AtribuicaoCamiao VALUES (2, 2, 2, 2, '2022-07-01', 13, 19, '2023-05-01', 'Y');
+INSERT INTO AtribuicaoCamiao VALUES (3, 3, 3, 3, '2022-08-01', 20, 24, '2023-04-01', 'Y');
+INSERT INTO AtribuicaoCamiao VALUES (4, 4, 4, 4, '2022-09-01', 27, 34, '2023-02-01', 'Y');
+INSERT INTO AtribuicaoCamiao VALUES (5, 5, 5, 5, '2022-10-01', 35, 38, '2023-01-01', 'Y');
+
+INSERT INTO UserLogin VALUES (1, 'admin1', 'hashedpassword1', 'Admin', 1);
+INSERT INTO UserLogin VALUES (2, 'eng1', 'hashedpassword2', 'Engenheiro', 4);
+INSERT INTO UserLogin VALUES (3, 'mot1', 'hashedpassword3', 'Motorista', 2);
+INSERT INTO UserLogin VALUES (4, 'opr1', 'hashedpassword4', 'Operario', 3);
+INSERT INTO UserLogin VALUES (5, 'admin2', 'hashedpassword5', 'Admin', 16);

@@ -1,70 +1,76 @@
-IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'sp_AddFuncionario')
-BEGIN
-    DROP PROCEDURE sp_AddFuncionario;
-END
-GO
+use MyLocalDB
+go
 
-CREATE PROCEDURE sp_AddFuncionario
+DROP PROCEDURE AddFuncionario;
+go
+CREATE PROCEDURE AddFuncionario
+(
     @ID_Funcionario INT,
-    @Nome VARCHAR(255),
-    @Funcao VARCHAR(255),
+    @Nome VARCHAR(256),
     @Salario DECIMAL(10, 2),
     @Sexo CHAR(1),
-    @Telemovel VARCHAR(15),
-    @Email VARCHAR(255),
+    @Telemovel VARCHAR(32),
+    @Morada VARCHAR(256),
+    @Data_nascimento DATE,
+    @Email VARCHAR(256),
     @Data_inicio_trabalho DATE,
-    @ID_Departamento INT,
-    @Type VARCHAR(255)
+    @Type VARCHAR(256)
+)
 AS
 BEGIN
-    INSERT INTO Funcionario
-    VALUES (@ID_Funcionario, @Nome, @Funcao, @Salario, @Sexo, @Telemovel, @Email, @Data_inicio_trabalho, @ID_Departamento, @Type)
-END;
-GO
-
-IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'sp_DeleteCliente')
-BEGIN
-    DROP PROCEDURE sp_DeleteCliente;
+    INSERT INTO Funcionario 
+    (
+        ID_Funcionario, 
+        Nome, 
+        Salario, 
+        Sexo, 
+        Telemovel, 
+        Morada, 
+        Data_nascimento, 
+        Email, 
+        Data_inicio_trabalho, 
+        Type
+    ) 
+    VALUES 
+    (
+        @ID_Funcionario, 
+        @Nome, 
+        @Salario, 
+        @Sexo, 
+        @Telemovel, 
+        @Morada, 
+        @Data_nascimento, 
+        @Email, 
+        @Data_inicio_trabalho, 
+        @Type
+    )
 END
-GO
+go
 
-CREATE PROCEDURE sp_DeleteCliente
-    @ID_Cliente INT
+DROP PROCEDURE RemoveFuncionario;
+go
+CREATE PROCEDURE RemoveFuncionario
+(
+    @ID_Funcionario INT
+)
 AS
 BEGIN
-    DELETE FROM Cliente
-    WHERE ID_Cliente = @ID_Cliente
-END;
-GO
-
-IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'sp_UpdateLoteMadeira')
-BEGIN
-    DROP PROCEDURE sp_UpdateLoteMadeira;
+    DELETE FROM Funcionario
+    WHERE ID_Funcionario = @ID_Funcionario
 END
-GO
 
-CREATE PROCEDURE sp_UpdateLoteMadeira
-    @ID_Lote INT,
-    @Qualidade DECIMAL(10, 2)
-AS
-BEGIN
-    UPDATE LoteMadeira
-    SET Qualidade = @Qualidade
-    WHERE ID_Lote = @ID_Lote
-END;
-GO
 
-IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'sp_GetFuncionariosByType')
-BEGIN
-    DROP PROCEDURE sp_GetFuncionariosByType;
-END
-GO
+EXEC AddFuncionario 
+    @ID_Funcionario = 6, 
+    @Nome = 'Sara', 
+    @Salario = 5000.00, 
+    @Sexo = 'M', 
+    @Telemovel = '123-456-7890', 
+    @Morada = '123 Main St', 
+    @Data_nascimento = '1985-01-01', 
+    @Email = 'johndoe@gmail.com', 
+    @Data_inicio_trabalho = '2023-05-30', 
+    @Type = 'Engenheiro'
 
-CREATE PROCEDURE sp_GetFuncionariosByType
-    @Type VARCHAR(255)
-AS
-BEGIN
-    SELECT * FROM Funcionario
-    WHERE Type = @Type
-END;
-GO
+---- Removing a Funcionario
+--EXEC RemoveFuncionario @ID_Funcionario = 3

@@ -22,3 +22,4 @@ C:\Users\gonca\Desktop\Mega\BDProject\BDProject\obj\Debug\net6.0-windows\refint\
 C:\Users\gonca\Desktop\Mega\BDProject\BDProject\obj\Debug\net6.0-windows\BDProject.pdb
 C:\Users\gonca\Desktop\Mega\BDProject\BDProject\obj\Debug\net6.0-windows\BDProject.genruntimeconfig.cache
 C:\Users\gonca\Desktop\Mega\BDProject\BDProject\obj\Debug\net6.0-windows\ref\BDProject.dll
+C:\Users\gonca\Desktop\Mega\BDProject\BDProject\obj\Debug\net6.0-windows\BDProject.Form2.resources
