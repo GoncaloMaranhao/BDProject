@@ -31,3 +31,5 @@ BEGIN
 
     RETURN @BonusPercent;
 END;
+go
+

@@ -21,7 +21,7 @@ CREATE TABLE Funcionario (
     Nome VARCHAR(256) NOT NULL,
     Salario DECIMAL(10, 2) CHECK (Salario>0) NOT NULL,
     Sexo CHAR(1) CHECK (Sexo IN ('M', 'F')) NOT NULL,
-    Telemovel VARCHAR(32) ,
+    Telemovel VARCHAR(32),
 	Morada VARCHAR(256),
 	Data_nascimento DATE NOT NULL,
     Email VARCHAR(256) UNIQUE,

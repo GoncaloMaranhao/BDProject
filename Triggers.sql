@@ -15,16 +15,13 @@ ON Funcionario
 INSTEAD OF DELETE
 AS
 BEGIN
-    -- Direct 
     DELETE CartaoTrabalho FROM CartaoTrabalho INNER JOIN DELETED ON CartaoTrabalho.ID_Funcionario = DELETED.ID_Funcionario;
     UPDATE Departamento SET ID_Gerente = NULL FROM Departamento INNER JOIN DELETED ON Departamento.ID_Gerente = DELETED.ID_Funcionario;
     DELETE Engenheiro FROM Engenheiro INNER JOIN DELETED ON Engenheiro.ID_Funcionario = DELETED.ID_Funcionario;
     
-    -- Delete Motorista and related AtribuicaoCamiao
     DELETE AtribuicaoCamiao FROM AtribuicaoCamiao INNER JOIN Motorista ON AtribuicaoCamiao.ID_Motorista = Motorista.ID_Motorista INNER JOIN DELETED ON Motorista.ID_Funcionario = DELETED.ID_Funcionario;
     DELETE Motorista FROM Motorista INNER JOIN DELETED ON Motorista.ID_Funcionario = DELETED.ID_Funcionario;
     
-    -- ProdutoMDF.ID_Operario = NULL
     UPDATE ProdutoMDF SET ID_Operario = NULL FROM ProdutoMDF INNER JOIN Operario ON ProdutoMDF.ID_Operario = Operario.ID_Operario INNER JOIN DELETED ON Operario.ID_Funcionario = DELETED.ID_Funcionario;
     
     DELETE Operario FROM Operario INNER JOIN DELETED ON Operario.ID_Funcionario = DELETED.ID_Funcionario;

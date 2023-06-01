@@ -13,7 +13,6 @@ DROP PROCEDURE GetFuncionariosOrderedByDataInicioTrabalho
 go
 
 CREATE PROCEDURE AddFuncionario
-(
     @Nome VARCHAR(256),
     @Salario DECIMAL(10, 2),
     @Sexo CHAR(1),
@@ -22,39 +21,59 @@ CREATE PROCEDURE AddFuncionario
     @Data_nascimento DATE,
     @Email VARCHAR(256),
     @Data_inicio_trabalho DATE,
-    @Type VARCHAR(256)
-)
+    @Type VARCHAR(256),
+    @Curso VARCHAR(256) = NULL,
+    @Data_Renovacao_Carta DATE = NULL,
+    @Carta_Especial CHAR(1) = NULL,
+    @Turno CHAR(1) = NULL,
+    @Especializacao VARCHAR(256) = NULL
 AS
 BEGIN
-	DECLARE @ID_Funcionario INT;
-    SET @ID_Funcionario = (SELECT dbo.GetNextFuncionarioID());
-    INSERT INTO Funcionario 
-    (
-        ID_Funcionario, 
-        Nome, 
-        Salario, 
-        Sexo, 
-        Telemovel, 
-        Morada, 
-        Data_nascimento, 
-        Email, 
-        Data_inicio_trabalho, 
-        Type
-    ) 
-    VALUES 
-    (
-        @ID_Funcionario, 
-        @Nome, 
-        @Salario, 
-        @Sexo, 
-        @Telemovel, 
-        @Morada, 
-        @Data_nascimento, 
-        @Email, 
-        @Data_inicio_trabalho, 
-        @Type
-    )
-END
+    -- Validation
+    IF @Type NOT IN ('Motorista', 'Operario', 'Engenheiro')
+        RAISERROR('Invalid Type.', 16, 1)
+    IF @Sexo NOT IN ('M', 'F')
+        RAISERROR('Invalid Sexo.', 16, 1)
+    IF @Carta_Especial NOT IN ('Y', 'N') AND @Type = 'Motorista'
+        RAISERROR('Invalid Carta_Especial.', 16, 1)
+    IF @Turno NOT IN ('D', 'N') AND @Type = 'Operario'
+        RAISERROR('Invalid Turno.', 16, 1)
+
+    DECLARE @ID_Funcionario INT;
+    SELECT @ID_Funcionario = dbo.GetNextFuncionarioID();
+
+    BEGIN TRANSACTION;
+    BEGIN TRY
+        INSERT INTO Funcionario(ID_Funcionario, Nome, Salario, Sexo, Telemovel, Morada, Data_nascimento, Email, Data_inicio_trabalho, Type)
+        VALUES(@ID_Funcionario, @Nome, @Salario, @Sexo, @Telemovel, @Morada, @Data_nascimento, @Email, @Data_inicio_trabalho, @Type);
+
+        IF @Type = 'Motorista'
+        BEGIN
+            INSERT INTO Motorista(ID_Motorista, ID_Funcionario, Data_Renovacao_Carta, Carta_Especial)
+            VALUES(@ID_Funcionario, @ID_Funcionario, @Data_Renovacao_Carta, @Carta_Especial);
+        END
+        ELSE IF @Type = 'Operario'
+        BEGIN
+            INSERT INTO Operario(ID_Operario, ID_Funcionario, Turno, Especializacao)
+            VALUES(@ID_Funcionario, @ID_Funcionario, @Turno, @Especializacao);
+        END
+        ELSE IF @Type = 'Engenheiro'
+        BEGIN
+            INSERT INTO Engenheiro(ID_Engenheiro, ID_Funcionario, Curso)
+            VALUES(@ID_Funcionario, @ID_Funcionario, @Curso);
+        END;
+
+        COMMIT;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK;
+        DECLARE @ErrMsg nvarchar(4000), @ErrSeverity INT;
+        SELECT @ErrMsg = ERROR_MESSAGE(),
+               @ErrSeverity = ERROR_SEVERITY();
+
+        RAISERROR(@ErrMsg, @ErrSeverity, 1);
+    END CATCH;
+END;
 go
 
 go
@@ -253,9 +272,6 @@ BEGIN
     ORDER BY
         Data_inicio_trabalho ASC;
 END;
-
-
-
 
 --EXEC AddFuncionario 
 --    @ID_Funcionario = 6, 

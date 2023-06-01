@@ -31,6 +31,14 @@
             this.components = new System.ComponentModel.Container();
             this.tabPage1 = new System.Windows.Forms.TabControl();
             this.Func = new System.Windows.Forms.TabPage();
+            this.lblDataRenovacaoCarta = new System.Windows.Forms.Label();
+            this.labelTurno = new System.Windows.Forms.Label();
+            this.labelCartaEspecial = new System.Windows.Forms.Label();
+            this.cmbTurno = new System.Windows.Forms.ComboBox();
+            this.cmbCartaEspecial = new System.Windows.Forms.ComboBox();
+            this.datePickerDataRenovacaoCarta = new System.Windows.Forms.DateTimePicker();
+            this.labelAdditionalInfo = new System.Windows.Forms.Label();
+            this.txtAdditionalInfo = new System.Windows.Forms.TextBox();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -113,6 +121,14 @@
             // 
             // Func
             // 
+            this.Func.Controls.Add(this.lblDataRenovacaoCarta);
+            this.Func.Controls.Add(this.labelTurno);
+            this.Func.Controls.Add(this.labelCartaEspecial);
+            this.Func.Controls.Add(this.cmbTurno);
+            this.Func.Controls.Add(this.cmbCartaEspecial);
+            this.Func.Controls.Add(this.datePickerDataRenovacaoCarta);
+            this.Func.Controls.Add(this.labelAdditionalInfo);
+            this.Func.Controls.Add(this.txtAdditionalInfo);
             this.Func.Controls.Add(this.button7);
             this.Func.Controls.Add(this.button6);
             this.Func.Controls.Add(this.button5);
@@ -157,6 +173,74 @@
             this.Func.Text = "tabPage1";
             this.Func.UseVisualStyleBackColor = true;
             this.Func.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // lblDataRenovacaoCarta
+            // 
+            this.lblDataRenovacaoCarta.AutoSize = true;
+            this.lblDataRenovacaoCarta.Location = new System.Drawing.Point(1079, 98);
+            this.lblDataRenovacaoCarta.Name = "lblDataRenovacaoCarta";
+            this.lblDataRenovacaoCarta.Size = new System.Drawing.Size(176, 25);
+            this.lblDataRenovacaoCarta.TabIndex = 48;
+            this.lblDataRenovacaoCarta.Text = "DataRenovacaoCarta";
+            // 
+            // labelTurno
+            // 
+            this.labelTurno.AutoSize = true;
+            this.labelTurno.Location = new System.Drawing.Point(1079, 98);
+            this.labelTurno.Name = "labelTurno";
+            this.labelTurno.Size = new System.Drawing.Size(58, 25);
+            this.labelTurno.TabIndex = 47;
+            this.labelTurno.Text = "Turno";
+            // 
+            // labelCartaEspecial
+            // 
+            this.labelCartaEspecial.AutoSize = true;
+            this.labelCartaEspecial.Location = new System.Drawing.Point(897, 102);
+            this.labelCartaEspecial.Name = "labelCartaEspecial";
+            this.labelCartaEspecial.Size = new System.Drawing.Size(115, 25);
+            this.labelCartaEspecial.TabIndex = 46;
+            this.labelCartaEspecial.Text = "CartaEspecial";
+            this.labelCartaEspecial.Click += new System.EventHandler(this.labelCartaEspecial_Click);
+            // 
+            // cmbTurno
+            // 
+            this.cmbTurno.FormattingEnabled = true;
+            this.cmbTurno.Location = new System.Drawing.Point(1079, 126);
+            this.cmbTurno.Name = "cmbTurno";
+            this.cmbTurno.Size = new System.Drawing.Size(182, 33);
+            this.cmbTurno.TabIndex = 45;
+            // 
+            // cmbCartaEspecial
+            // 
+            this.cmbCartaEspecial.FormattingEnabled = true;
+            this.cmbCartaEspecial.Location = new System.Drawing.Point(891, 128);
+            this.cmbCartaEspecial.Name = "cmbCartaEspecial";
+            this.cmbCartaEspecial.Size = new System.Drawing.Size(182, 33);
+            this.cmbCartaEspecial.TabIndex = 44;
+            // 
+            // datePickerDataRenovacaoCarta
+            // 
+            this.datePickerDataRenovacaoCarta.Location = new System.Drawing.Point(1079, 128);
+            this.datePickerDataRenovacaoCarta.Name = "datePickerDataRenovacaoCarta";
+            this.datePickerDataRenovacaoCarta.Size = new System.Drawing.Size(300, 31);
+            this.datePickerDataRenovacaoCarta.TabIndex = 43;
+            this.datePickerDataRenovacaoCarta.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
+            // labelAdditionalInfo
+            // 
+            this.labelAdditionalInfo.AutoSize = true;
+            this.labelAdditionalInfo.Location = new System.Drawing.Point(891, 102);
+            this.labelAdditionalInfo.Name = "labelAdditionalInfo";
+            this.labelAdditionalInfo.Size = new System.Drawing.Size(131, 25);
+            this.labelAdditionalInfo.TabIndex = 40;
+            this.labelAdditionalInfo.Text = "Additional Info";
+            // 
+            // txtAdditionalInfo
+            // 
+            this.txtAdditionalInfo.Location = new System.Drawing.Point(891, 130);
+            this.txtAdditionalInfo.Name = "txtAdditionalInfo";
+            this.txtAdditionalInfo.Size = new System.Drawing.Size(150, 31);
+            this.txtAdditionalInfo.TabIndex = 37;
             // 
             // button7
             // 
@@ -284,7 +368,7 @@
             // labelFuncao
             // 
             this.labelFuncao.AutoSize = true;
-            this.labelFuncao.Location = new System.Drawing.Point(1105, 96);
+            this.labelFuncao.Location = new System.Drawing.Point(703, 102);
             this.labelFuncao.Name = "labelFuncao";
             this.labelFuncao.Size = new System.Drawing.Size(69, 25);
             this.labelFuncao.TabIndex = 23;
@@ -293,7 +377,7 @@
             // labelDataInicioTrabalho
             // 
             this.labelDataInicioTrabalho.AutoSize = true;
-            this.labelDataInicioTrabalho.Location = new System.Drawing.Point(781, 100);
+            this.labelDataInicioTrabalho.Location = new System.Drawing.Point(397, 102);
             this.labelDataInicioTrabalho.Name = "labelDataInicioTrabalho";
             this.labelDataInicioTrabalho.Size = new System.Drawing.Size(168, 25);
             this.labelDataInicioTrabalho.TabIndex = 22;
@@ -302,7 +386,7 @@
             // labelEmail
             // 
             this.labelEmail.AutoSize = true;
-            this.labelEmail.Location = new System.Drawing.Point(615, 102);
+            this.labelEmail.Location = new System.Drawing.Point(241, 102);
             this.labelEmail.Name = "labelEmail";
             this.labelEmail.Size = new System.Drawing.Size(54, 25);
             this.labelEmail.TabIndex = 21;
@@ -311,7 +395,7 @@
             // labelDataNascimento
             // 
             this.labelDataNascimento.AutoSize = true;
-            this.labelDataNascimento.Location = new System.Drawing.Point(313, 102);
+            this.labelDataNascimento.Location = new System.Drawing.Point(1060, 34);
             this.labelDataNascimento.Name = "labelDataNascimento";
             this.labelDataNascimento.Size = new System.Drawing.Size(148, 25);
             this.labelDataNascimento.TabIndex = 20;
@@ -321,7 +405,7 @@
             // labelMorada
             // 
             this.labelMorada.AutoSize = true;
-            this.labelMorada.Location = new System.Drawing.Point(1115, 34);
+            this.labelMorada.Location = new System.Drawing.Point(897, 34);
             this.labelMorada.Name = "labelMorada";
             this.labelMorada.Size = new System.Drawing.Size(74, 25);
             this.labelMorada.TabIndex = 19;
@@ -330,7 +414,7 @@
             // labelTelemovel
             // 
             this.labelTelemovel.AutoSize = true;
-            this.labelTelemovel.Location = new System.Drawing.Point(961, 32);
+            this.labelTelemovel.Location = new System.Drawing.Point(741, 34);
             this.labelTelemovel.Name = "labelTelemovel";
             this.labelTelemovel.Size = new System.Drawing.Size(90, 25);
             this.labelTelemovel.TabIndex = 18;
@@ -339,7 +423,7 @@
             // labelSexo
             // 
             this.labelSexo.AutoSize = true;
-            this.labelSexo.Location = new System.Drawing.Point(781, 32);
+            this.labelSexo.Location = new System.Drawing.Point(553, 40);
             this.labelSexo.Name = "labelSexo";
             this.labelSexo.Size = new System.Drawing.Size(50, 25);
             this.labelSexo.TabIndex = 17;
@@ -349,7 +433,7 @@
             // labelSalario
             // 
             this.labelSalario.AutoSize = true;
-            this.labelSalario.Location = new System.Drawing.Point(615, 34);
+            this.labelSalario.Location = new System.Drawing.Point(397, 34);
             this.labelSalario.Name = "labelSalario";
             this.labelSalario.Size = new System.Drawing.Size(80, 25);
             this.labelSalario.TabIndex = 16;
@@ -359,7 +443,7 @@
             // labelNome
             // 
             this.labelNome.AutoSize = true;
-            this.labelNome.Location = new System.Drawing.Point(453, 34);
+            this.labelNome.Location = new System.Drawing.Point(241, 40);
             this.labelNome.Name = "labelNome";
             this.labelNome.Size = new System.Drawing.Size(61, 25);
             this.labelNome.TabIndex = 15;
@@ -375,7 +459,7 @@
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(1247, 62);
+            this.btnSubmit.Location = new System.Drawing.Point(1195, 175);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(184, 97);
             this.btnSubmit.TabIndex = 13;
@@ -385,14 +469,14 @@
             // 
             // datePickerDataInicioTrabalho
             // 
-            this.datePickerDataInicioTrabalho.Location = new System.Drawing.Point(738, 128);
+            this.datePickerDataInicioTrabalho.Location = new System.Drawing.Point(397, 128);
             this.datePickerDataInicioTrabalho.Name = "datePickerDataInicioTrabalho";
             this.datePickerDataInicioTrabalho.Size = new System.Drawing.Size(300, 31);
             this.datePickerDataInicioTrabalho.TabIndex = 12;
             // 
             // datePickerDataNascimento
             // 
-            this.datePickerDataNascimento.Location = new System.Drawing.Point(270, 130);
+            this.datePickerDataNascimento.Location = new System.Drawing.Point(1060, 64);
             this.datePickerDataNascimento.Name = "datePickerDataNascimento";
             this.datePickerDataNascimento.Size = new System.Drawing.Size(300, 31);
             this.datePickerDataNascimento.TabIndex = 11;
@@ -400,7 +484,7 @@
             // cmbType
             // 
             this.cmbType.FormattingEnabled = true;
-            this.cmbType.Location = new System.Drawing.Point(1050, 126);
+            this.cmbType.Location = new System.Drawing.Point(703, 130);
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(182, 33);
             this.cmbType.TabIndex = 10;
@@ -408,28 +492,28 @@
             // cmbSexo
             // 
             this.cmbSexo.FormattingEnabled = true;
-            this.cmbSexo.Location = new System.Drawing.Point(738, 60);
+            this.cmbSexo.Location = new System.Drawing.Point(553, 66);
             this.cmbSexo.Name = "cmbSexo";
             this.cmbSexo.Size = new System.Drawing.Size(182, 33);
             this.cmbSexo.TabIndex = 9;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(582, 130);
+            this.txtEmail.Location = new System.Drawing.Point(241, 130);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(150, 31);
             this.txtEmail.TabIndex = 8;
             // 
             // txtMorada
             // 
-            this.txtMorada.Location = new System.Drawing.Point(1082, 62);
+            this.txtMorada.Location = new System.Drawing.Point(897, 66);
             this.txtMorada.Name = "txtMorada";
             this.txtMorada.Size = new System.Drawing.Size(150, 31);
             this.txtMorada.TabIndex = 7;
             // 
             // txtTelemovel
             // 
-            this.txtTelemovel.Location = new System.Drawing.Point(926, 62);
+            this.txtTelemovel.Location = new System.Drawing.Point(741, 68);
             this.txtTelemovel.Name = "txtTelemovel";
             this.txtTelemovel.Size = new System.Drawing.Size(150, 31);
             this.txtTelemovel.TabIndex = 6;
@@ -437,14 +521,14 @@
             // 
             // txtSalario
             // 
-            this.txtSalario.Location = new System.Drawing.Point(582, 62);
+            this.txtSalario.Location = new System.Drawing.Point(397, 68);
             this.txtSalario.Name = "txtSalario";
             this.txtSalario.Size = new System.Drawing.Size(150, 31);
             this.txtSalario.TabIndex = 5;
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(426, 62);
+            this.txtNome.Location = new System.Drawing.Point(241, 68);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(150, 31);
             this.txtNome.TabIndex = 4;
@@ -472,7 +556,7 @@
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 461);
+            this.dataGridView2.Location = new System.Drawing.Point(3, 468);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 62;
             this.dataGridView2.RowTemplate.Height = 33;
@@ -627,13 +711,13 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // Form1
+            // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1744, 958);
             this.Controls.Add(this.tabPage1);
-            this.Name = "Form1";
+            this.Name = "mainForm";
             this.Text = "Teste";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabPage1.ResumeLayout(false);
@@ -701,5 +785,14 @@
         private Button button7;
         private Button button6;
         private Button button5;
+        private Label labelTurno;
+        private Label labelAdditionalInfo;
+        private TextBox textBox3;
+        private TextBox txtAdditionalInfo;
+        private ComboBox cmbCartaEspecial;
+        private DateTimePicker datePickerDataRenovacaoCarta;
+        private Label lblDataRenovacaoCarta;
+        private Label labelCartaEspecial;
+        private ComboBox cmbTurno;
     }
 }
