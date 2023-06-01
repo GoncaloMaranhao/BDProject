@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Z2YfgNmI3AVIYt7hL2M/w4BKBSSrADDCOS2aDPPSMPQ0/v8g/fUuEd7q7Y1+NkXt22iUll5a7EMg/5M0IVWY/Q==",
+  "dgSpecHash": "x8ab1Oi1OVq1p0azcHtDy+9mOr+Y1u7L63GB3GGz1y9N7jYXx6Vd4E0Gua6biuCQ2lIb+oqo5iJgyhnmTWUN4g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\gonca\\Documents\\GitHub\\BDProject\\BDProject\\BDProject.csproj",
+  "projectFilePath": "C:\\Users\\gonca\\Desktop\\BDProject-main\\BDProject-main\\BDProject\\BDProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gonca\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\gonca\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

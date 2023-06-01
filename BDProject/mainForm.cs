@@ -7,7 +7,6 @@ using System.Windows.Forms;
 
 namespace BDProject
 
-
 {
 
     public partial class mainForm : Form
@@ -20,7 +19,7 @@ namespace BDProject
 
         }
 
-        string connectionString = @"Data Source=DESKTOP-814R5P6;Initial Catalog=MyLocalDB;Integrated Security=True";
+        string connectionString = @"Data Source=GON;Initial Catalog=MyLocalDB;Integrated Security=True";
 
         private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -121,14 +120,35 @@ namespace BDProject
 
         }
 
+
         private void button1_Click(object sender, EventArgs e)
         {
 
-            cmbSexo.Items.Add("M");
-            cmbSexo.Items.Add("F");
-            cmbType.Items.Add("Engenheiro");
-            cmbType.Items.Add("Motorista");
-            cmbType.Items.Add("Operario");
+            if (!cmbSexo.Items.Contains("M"))
+            {
+                cmbSexo.Items.Add("M");
+            }
+
+            if (!cmbSexo.Items.Contains("F"))
+            {
+                cmbSexo.Items.Add("F");
+            }
+
+            if (!cmbType.Items.Contains("Engenheiro"))
+            {
+                cmbType.Items.Add("Engenheiro");
+            }
+
+            if (!cmbType.Items.Contains("Motorista"))
+            {
+                cmbType.Items.Add("Motorista");
+            }
+
+            if (!cmbType.Items.Contains("Operario"))
+            {
+                cmbType.Items.Add("Operario");
+            }
+
 
             labelNome.Visible = true;
             labelSalario.Visible = true;
@@ -209,12 +229,13 @@ namespace BDProject
 
                     if (cmbType.SelectedItem.ToString() == "Motorista")
                     {
-                        cmd.Parameters.Add("@DataRenovacaoCarta", SqlDbType.Date).Value = datePickerDataRenovacaoCarta.Value;
-                        cmd.Parameters.Add("@CartaEspecial", SqlDbType.Char).Value = cmbCartaEspecial.SelectedItem.ToString();
+                        cmd.Parameters.Add("@Data_Renovacao_Carta", SqlDbType.Date).Value = datePickerDataRenovacaoCarta.Value;
+                        cmd.Parameters.Add("@Carta_Especial", SqlDbType.Char).Value = cmbCartaEspecial.SelectedItem.ToString();
                     }
                     else if (cmbType.SelectedItem.ToString() == "Operario")
                     {
                         cmd.Parameters.Add("@Turno", SqlDbType.Char).Value = cmbTurno.SelectedItem.ToString();
+                        cmd.Parameters.Add("@Especializacao", SqlDbType.VarChar).Value = labelAdditionalInfo.Text;
                     }
                     else if (cmbType.SelectedItem.ToString() == "Engenheiro")
                     {

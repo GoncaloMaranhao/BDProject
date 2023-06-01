@@ -38,7 +38,7 @@ namespace BDProject
             string username = textBoxUsername.Text;
             string password = textBoxPassword.Text;
 
-            string connectionString = @"Data Source=DESKTOP-814R5P6;Initial Catalog=MyLocalDB;Integrated Security=True";
+            string connectionString = @"Data Source=GON;Initial Catalog=MyLocalDB;Integrated Security=True";
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 con.Open();
