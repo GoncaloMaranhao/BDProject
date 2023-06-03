@@ -76,6 +76,12 @@
             this.AddFuncionarioButton = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnSubmitRemoveCard = new System.Windows.Forms.Button();
+            this.tbIDCartTrab = new System.Windows.Forms.TextBox();
+            this.lblIDCartTrab = new System.Windows.Forms.Label();
+            this.btnRemoveCartao = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.SearchCartTrabName = new System.Windows.Forms.TextBox();
             this.btnCarTraOrder = new System.Windows.Forms.Button();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.txtIDCarFun = new System.Windows.Forms.TextBox();
@@ -102,8 +108,6 @@
             this.tabPage14 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.SearchCartTrabName = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.tabPage1.SuspendLayout();
             this.Func.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -629,6 +633,10 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnSubmitRemoveCard);
+            this.tabPage2.Controls.Add(this.tbIDCartTrab);
+            this.tabPage2.Controls.Add(this.lblIDCartTrab);
+            this.tabPage2.Controls.Add(this.btnRemoveCartao);
             this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.SearchCartTrabName);
             this.tabPage2.Controls.Add(this.btnCarTraOrder);
@@ -651,6 +659,60 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnSubmitRemoveCard
+            // 
+            this.btnSubmitRemoveCard.Location = new System.Drawing.Point(1260, 75);
+            this.btnSubmitRemoveCard.Name = "btnSubmitRemoveCard";
+            this.btnSubmitRemoveCard.Size = new System.Drawing.Size(162, 62);
+            this.btnSubmitRemoveCard.TabIndex = 18;
+            this.btnSubmitRemoveCard.Text = "Submit";
+            this.btnSubmitRemoveCard.UseVisualStyleBackColor = true;
+            this.btnSubmitRemoveCard.Click += new System.EventHandler(this.btnSubmitRemoveCard_Click);
+            // 
+            // tbIDCartTrab
+            // 
+            this.tbIDCartTrab.Location = new System.Drawing.Point(1074, 87);
+            this.tbIDCartTrab.Name = "tbIDCartTrab";
+            this.tbIDCartTrab.Size = new System.Drawing.Size(150, 31);
+            this.tbIDCartTrab.TabIndex = 17;
+            // 
+            // lblIDCartTrab
+            // 
+            this.lblIDCartTrab.AutoSize = true;
+            this.lblIDCartTrab.Location = new System.Drawing.Point(1074, 50);
+            this.lblIDCartTrab.Name = "lblIDCartTrab";
+            this.lblIDCartTrab.Size = new System.Drawing.Size(156, 25);
+            this.lblIDCartTrab.TabIndex = 16;
+            this.lblIDCartTrab.Text = "ID_CartaoTrabalho";
+            this.lblIDCartTrab.Click += new System.EventHandler(this.label4_Click_3);
+            // 
+            // btnRemoveCartao
+            // 
+            this.btnRemoveCartao.Location = new System.Drawing.Point(875, 69);
+            this.btnRemoveCartao.Name = "btnRemoveCartao";
+            this.btnRemoveCartao.Size = new System.Drawing.Size(159, 66);
+            this.btnRemoveCartao.TabIndex = 15;
+            this.btnRemoveCartao.Text = "Remove Card";
+            this.btnRemoveCartao.UseVisualStyleBackColor = true;
+            this.btnRemoveCartao.Click += new System.EventHandler(this.button8_Click_1);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(1238, 203);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(141, 25);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Search by Name";
+            // 
+            // SearchCartTrabName
+            // 
+            this.SearchCartTrabName.Location = new System.Drawing.Point(1238, 242);
+            this.SearchCartTrabName.Name = "SearchCartTrabName";
+            this.SearchCartTrabName.Size = new System.Drawing.Size(249, 31);
+            this.SearchCartTrabName.TabIndex = 13;
+            this.SearchCartTrabName.TextChanged += new System.EventHandler(this.SearchCartTrabName_TextChanged);
             // 
             // btnCarTraOrder
             // 
@@ -697,7 +759,7 @@
             // 
             // btnSubmitCarTra
             // 
-            this.btnSubmitCarTra.Location = new System.Drawing.Point(830, 231);
+            this.btnSubmitCarTra.Location = new System.Drawing.Point(447, 296);
             this.btnSubmitCarTra.Name = "btnSubmitCarTra";
             this.btnSubmitCarTra.Size = new System.Drawing.Size(162, 62);
             this.btnSubmitCarTra.TabIndex = 6;
@@ -728,7 +790,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1124, 242);
+            this.label2.Location = new System.Drawing.Point(1236, 286);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(248, 25);
             this.label2.TabIndex = 3;
@@ -736,7 +798,7 @@
             // 
             // SearchCartTrab
             // 
-            this.SearchCartTrab.Location = new System.Drawing.Point(1124, 288);
+            this.SearchCartTrab.Location = new System.Drawing.Point(1236, 327);
             this.SearchCartTrab.Name = "SearchCartTrab";
             this.SearchCartTrab.Size = new System.Drawing.Size(251, 31);
             this.SearchCartTrab.TabIndex = 2;
@@ -912,23 +974,6 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // SearchCartTrabName
-            // 
-            this.SearchCartTrabName.Location = new System.Drawing.Point(1126, 172);
-            this.SearchCartTrabName.Name = "SearchCartTrabName";
-            this.SearchCartTrabName.Size = new System.Drawing.Size(249, 31);
-            this.SearchCartTrabName.TabIndex = 13;
-            this.SearchCartTrabName.TextChanged += new System.EventHandler(this.SearchCartTrabName_TextChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1124, 112);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(141, 25);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Search by Name";
-            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -1030,5 +1075,9 @@
         private Button btnCarTraOrder;
         private Label label3;
         private TextBox SearchCartTrabName;
+        private Button btnRemoveCartao;
+        private Label lblIDCartTrab;
+        private Button btnSubmitRemoveCard;
+        private TextBox tbIDCartTrab;
     }
 }

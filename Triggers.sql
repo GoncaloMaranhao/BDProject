@@ -8,8 +8,10 @@ go
 --and text like 'Funcionario'
 
 DROP TRIGGER trg_Funcionario_Delete_All;
+DROP TRIGGER trg_CartaoTrabalho_Delete;
 go
 
+-- Delete Funcionario
 CREATE TRIGGER trg_Funcionario_Delete_All
 ON Funcionario
 INSTEAD OF DELETE
@@ -43,7 +45,17 @@ BEGIN
         RAISERROR(@ErrorMsg, @ErrorSeverity, @ErrorState);
     END CATCH
 END;
-GO
+go
 
-
+--_Delete CartaoTrabalho
+CREATE TRIGGER trg_CartaoTrabalho_Delete
+ON CartaoTrabalho
+INSTEAD OF DELETE
+AS
+BEGIN
+    DELETE CartaoTrabalho 
+    FROM CartaoTrabalho 
+    INNER JOIN DELETED ON CartaoTrabalho.ID_CartaoTrabalho = DELETED.ID_CartaoTrabalho;
+END;
+go
 

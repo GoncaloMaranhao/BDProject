@@ -15,6 +15,7 @@ DROP PROCEDURE AssociateCartaoToFuncionario;
 DROP PROCEDURE sp_GetCartaoTrabalhoOrdered;
 DROP PROCEDURE SearchCartaoTrabalho;
 DROP PROCEDURE SearchCartaoTrabalhoByName;
+DROP PROCEDURE DeleteCartaoTrabalho;
 
 go
 
@@ -322,7 +323,7 @@ AS
 BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
-            -- Set any active card of the Funcionario to inactive
+            -- Set any active CartaoTraablho of Funcionario to inactive
             UPDATE CartaoTrabalho
             SET ID_Funcionario = NULL
             WHERE ID_Funcionario = @ID_Funcionario AND dbo.fn_GetEstado(Data_Validade) = 'A';
@@ -380,3 +381,15 @@ BEGIN
     LEFT JOIN Funcionario f ON f.ID_Funcionario = ct.ID_Funcionario
     WHERE f.Nome LIKE '%' + @SearchTerm + '%';
 END;
+go
+
+--
+CREATE PROCEDURE DeleteCartaoTrabalho
+    @ID INT
+AS
+BEGIN
+    DELETE FROM CartaoTrabalho WHERE ID_CartaoTrabalho = @ID;
+END
+go
+
+

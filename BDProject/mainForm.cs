@@ -131,6 +131,9 @@ namespace BDProject
             txtIDCarTra.Visible = false;
             txtIDCarFun.Visible = false;
             btnSubmitCarTra.Visible = false;
+            lblIDCartTrab.Visible = false;
+            tbIDCartTrab.Visible = false;
+            btnSubmitRemoveCard.Visible = false;
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -209,7 +212,7 @@ namespace BDProject
             }
         }
 
-        
+
 
         private void RefreshCartaoTrabalhoData()
         {
@@ -311,7 +314,7 @@ namespace BDProject
             cmbType.Visible = false;
 
             btnSubmit.Visible = false;
-            
+
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -661,6 +664,43 @@ namespace BDProject
             }
         }
 
+        private void button8_Click_1(object sender, EventArgs e)
+        {
+            lblIDCartTrab.Visible = true;
+            tbIDCartTrab.Visible = true;
+            btnSubmitRemoveCard.Visible = true;
+        }
+
+        private void label4_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click_3(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSubmitRemoveCard_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("DeleteCartaoTrabalho", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ID", tbIDCartTrab.Text);
+
+                    command.ExecuteNonQuery();
+
+                }
+            }
+
+            lblIDCartTrab.Visible = false;
+            tbIDCartTrab.Visible = false;
+            btnSubmitRemoveCard.Visible = false;
+            RefreshCartaoTrabalhoData();
+        }
     }
 }
 
