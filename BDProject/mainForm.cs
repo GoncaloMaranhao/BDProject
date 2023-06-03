@@ -182,6 +182,7 @@ namespace BDProject
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 con.Open();
+                // VIEW AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
                 SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Funcionario", con);
                 DataTable dt = new DataTable();
                 da.Fill(dt);

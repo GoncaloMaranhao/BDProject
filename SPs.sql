@@ -42,8 +42,9 @@ BEGIN
     DECLARE @ID_Funcionario INT;
     SELECT @ID_Funcionario = dbo.GetNextFuncionarioID();
 
-    BEGIN TRANSACTION;
+    
     BEGIN TRY
+	BEGIN TRANSACTION;
         INSERT INTO Funcionario(ID_Funcionario, Nome, Salario, Sexo, Telemovel, Morada, Data_nascimento, Email, Data_inicio_trabalho, Type)
         VALUES(@ID_Funcionario, @Nome, @Salario, @Sexo, @Telemovel, @Morada, @Data_nascimento, @Email, @Data_inicio_trabalho, @Type);
 
@@ -64,6 +65,7 @@ BEGIN
         END;
 
         COMMIT;
+		------- voltar aqui ------
     END TRY
     BEGIN CATCH
         ROLLBACK;

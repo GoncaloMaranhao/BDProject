@@ -16,6 +16,7 @@ namespace BDProject
         public login()
         {
             InitializeComponent();
+            textBoxPassword.PasswordChar = '*';
         }
 
         private void Form3_Load(object sender, EventArgs e)
