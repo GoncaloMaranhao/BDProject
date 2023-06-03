@@ -14,6 +14,7 @@ DROP PROCEDURE GenerateCartaoTrabalho;
 DROP PROCEDURE AssociateCartaoToFuncionario;
 DROP PROCEDURE sp_GetCartaoTrabalhoOrdered;
 DROP PROCEDURE SearchCartaoTrabalho;
+DROP PROCEDURE SearchCartaoTrabalhoByName;
 
 go
 
@@ -367,5 +368,15 @@ BEGIN
         LEFT JOIN Funcionario f ON f.ID_Funcionario = ct.ID_Funcionario
         WHERE dbo.fn_GetEstado(ct.Data_Validade) = @SearchTerm;
 END;
-
 go
+
+--Search by name
+CREATE PROCEDURE SearchCartaoTrabalhoByName
+    @SearchTerm VARCHAR(50)
+AS
+BEGIN
+    SELECT ct.ID_Funcionario, f.Nome as Funcionario, ct.ID_CartaoTrabalho, dbo.fn_GetEstado(ct.Data_Validade) as Estado, ct.Data_Validade, ct.Data_Emissao
+    FROM CartaoTrabalho ct
+    LEFT JOIN Funcionario f ON f.ID_Funcionario = ct.ID_Funcionario
+    WHERE f.Nome LIKE '%' + @SearchTerm + '%';
+END;

@@ -638,6 +638,29 @@ namespace BDProject
             sda.Fill(dt);
             dataGridView3.DataSource = dt;
         }
+
+        private void SearchCartTrabName_TextChanged(object sender, EventArgs e)
+        {
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                using (var command = new SqlCommand("SearchCartaoTrabalhoByName", conn))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@SearchTerm", SearchCartTrabName.Text);
+
+                    using (var adapter = new SqlDataAdapter(command))
+                    {
+                        var dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+
+                        dataGridView4.DataSource = dataTable;
+                    }
+                }
+            }
+        }
+
     }
 }
 

@@ -76,6 +76,7 @@
             this.AddFuncionarioButton = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnCarTraOrder = new System.Windows.Forms.Button();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.txtIDCarFun = new System.Windows.Forms.TextBox();
             this.txtIDCarTra = new System.Windows.Forms.TextBox();
@@ -101,7 +102,8 @@
             this.tabPage14 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.btnCarTraOrder = new System.Windows.Forms.Button();
+            this.SearchCartTrabName = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabPage1.SuspendLayout();
             this.Func.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -627,6 +629,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label3);
+            this.tabPage2.Controls.Add(this.SearchCartTrabName);
             this.tabPage2.Controls.Add(this.btnCarTraOrder);
             this.tabPage2.Controls.Add(this.dataGridView4);
             this.tabPage2.Controls.Add(this.txtIDCarFun);
@@ -647,6 +651,16 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnCarTraOrder
+            // 
+            this.btnCarTraOrder.Location = new System.Drawing.Point(425, 69);
+            this.btnCarTraOrder.Name = "btnCarTraOrder";
+            this.btnCarTraOrder.Size = new System.Drawing.Size(231, 68);
+            this.btnCarTraOrder.TabIndex = 12;
+            this.btnCarTraOrder.Text = "Order BY ID_Funcionario";
+            this.btnCarTraOrder.UseVisualStyleBackColor = true;
+            this.btnCarTraOrder.Click += new System.EventHandler(this.btnCarTraOrder_Click);
             // 
             // dataGridView4
             // 
@@ -898,15 +912,22 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // btnCarTraOrder
+            // SearchCartTrabName
             // 
-            this.btnCarTraOrder.Location = new System.Drawing.Point(425, 69);
-            this.btnCarTraOrder.Name = "btnCarTraOrder";
-            this.btnCarTraOrder.Size = new System.Drawing.Size(231, 68);
-            this.btnCarTraOrder.TabIndex = 12;
-            this.btnCarTraOrder.Text = "Order BY ID_Funcionario";
-            this.btnCarTraOrder.UseVisualStyleBackColor = true;
-            this.btnCarTraOrder.Click += new System.EventHandler(this.btnCarTraOrder_Click);
+            this.SearchCartTrabName.Location = new System.Drawing.Point(1126, 172);
+            this.SearchCartTrabName.Name = "SearchCartTrabName";
+            this.SearchCartTrabName.Size = new System.Drawing.Size(249, 31);
+            this.SearchCartTrabName.TabIndex = 13;
+            this.SearchCartTrabName.TextChanged += new System.EventHandler(this.SearchCartTrabName_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(1124, 112);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(141, 25);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Search by Name";
             // 
             // mainForm
             // 
@@ -1007,5 +1028,7 @@
         private Label lblIDFun;
         private DataGridView dataGridView4;
         private Button btnCarTraOrder;
+        private Label label3;
+        private TextBox SearchCartTrabName;
     }
 }
