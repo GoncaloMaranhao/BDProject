@@ -2,6 +2,8 @@ use myLocalDB
 go
 
 DROP VIEW FuncionarioWithAge;
+DROP VIEW vFuncionarioCartao;
+DROP VIEW vw_CartaoTrabalho;
 
 go
 CREATE VIEW FuncionarioWithAge AS
@@ -26,3 +28,12 @@ SELECT
     END as Age
 FROM 
     Funcionario
+go
+
+-- To see active or inactive cartao trabalho
+CREATE VIEW vw_CartaoTrabalho
+AS
+SELECT ct.ID_Funcionario, f.Nome as Funcionario, ct.ID_CartaoTrabalho, dbo.fn_GetEstado(ct.Data_Validade) as Estado, ct.Data_Validade, ct.Data_Emissao, ct.Observacoes
+FROM CartaoTrabalho ct
+JOIN Funcionario f ON f.ID_Funcionario = ct.ID_Funcionario;
+

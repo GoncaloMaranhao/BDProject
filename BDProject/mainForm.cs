@@ -19,7 +19,7 @@ namespace BDProject
 
         }
 
-        string connectionString = @"Data Source=GON;Initial Catalog=MyLocalDB;Integrated Security=True";
+        string connectionString = @"Data Source=DESKTOP-814R5P6;Initial Catalog=MyLocalDB;Integrated Security=True";
 
         private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -509,6 +509,26 @@ namespace BDProject
         }
 
         private void labelCartaEspecial_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button10_Click(object sender, EventArgs e)
         {
 
         }

@@ -3,7 +3,9 @@ go
 
 DROP FUNCTION GetNextFuncionarioID;
 DROP FUNCTION dbo.GetBonusPercent;
+DROP FUNCTION fn_GetEstado;
 
+-- Increment Funcionario ID
 go
 CREATE FUNCTION GetNextFuncionarioID()
 RETURNS INT
@@ -15,6 +17,7 @@ BEGIN
 END
 go
 
+-- Salary Bonus
 go
 CREATE FUNCTION dbo.GetBonusPercent (@YearsExperience INT)
 RETURNS DECIMAL(10, 2)
@@ -31,5 +34,16 @@ BEGIN
 
     RETURN @BonusPercent;
 END;
+go
+
+-- Get Estado CartaoTrabalho 'A' for Active and 'I' for Inactive
+CREATE FUNCTION fn_GetEstado(@Data_Validade DATE)
+RETURNS CHAR(1)
+AS
+BEGIN
+    DECLARE @Estado CHAR(1)
+    SET @Estado = (CASE WHEN @Data_Validade >= CAST(GETDATE() AS DATE) THEN 'A' ELSE 'I' END)
+    RETURN @Estado
+END
 go
 

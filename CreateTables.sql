@@ -25,7 +25,7 @@ CREATE TABLE Funcionario (
 	Morada VARCHAR(256),
 	Data_nascimento DATE NOT NULL,
     Email VARCHAR(256) UNIQUE,
-    Data_inicio_trabalho DATE,
+    Data_inicio_trabalho DATE NOT NULL,
     Type VARCHAR(256) NOT NULL,
     CHECK (Type IN ('Engenheiro', 'Motorista', 'Operario'))
 );

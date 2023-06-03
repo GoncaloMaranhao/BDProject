@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gonca\\Desktop\\Mega\\BDProject-main\\BDProject\\BDProject.csproj": {}
+    "C:\\Users\\gonca\\Desktop\\BDProject\\BDProject\\BDProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gonca\\Desktop\\Mega\\BDProject-main\\BDProject\\BDProject.csproj": {
+    "C:\\Users\\gonca\\Desktop\\BDProject\\BDProject\\BDProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gonca\\Desktop\\Mega\\BDProject-main\\BDProject\\BDProject.csproj",
+        "projectUniqueName": "C:\\Users\\gonca\\Desktop\\BDProject\\BDProject\\BDProject.csproj",
         "projectName": "BDProject",
-        "projectPath": "C:\\Users\\gonca\\Desktop\\Mega\\BDProject-main\\BDProject\\BDProject.csproj",
+        "projectPath": "C:\\Users\\gonca\\Desktop\\BDProject\\BDProject\\BDProject.csproj",
         "packagesPath": "C:\\Users\\gonca\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gonca\\Desktop\\Mega\\BDProject-main\\BDProject\\obj\\",
+        "outputPath": "C:\\Users\\gonca\\Desktop\\BDProject\\BDProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gonca\\AppData\\Roaming\\NuGet\\NuGet.Config",

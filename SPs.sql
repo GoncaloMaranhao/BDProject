@@ -9,9 +9,13 @@ DROP PROCEDURE SearchFuncionario;
 DROP PROCEDURE GetFuncionariosOrderedBySalario;
 DROP PROCEDURE GetFuncionariosOrderedByAge;
 DROP PROCEDURE GetFuncionariosOrderedByDataNascimento;
-DROP PROCEDURE GetFuncionariosOrderedByDataInicioTrabalho
+DROP PROCEDURE GetFuncionariosOrderedByDataInicioTrabalho;
+DROP PROCEDURE GenerateCartaoTrabalho;
+
 go
 
+
+------------------------------------Funcionario--------------------
 CREATE PROCEDURE AddFuncionario
     @Nome VARCHAR(256),
     @Salario DECIMAL(10, 2),
@@ -29,7 +33,6 @@ CREATE PROCEDURE AddFuncionario
     @Especializacao VARCHAR(256) = NULL
 AS
 BEGIN
-    -- Validation
     IF @Type NOT IN ('Motorista', 'Operario', 'Engenheiro')
         RAISERROR('Invalid Type.', 16, 1)
     IF @Sexo NOT IN ('M', 'F')
@@ -65,7 +68,6 @@ BEGIN
         END;
 
         COMMIT;
-		------- voltar aqui ------
     END TRY
     BEGIN CATCH
         ROLLBACK;
@@ -101,6 +103,7 @@ BEGIN
 END
 go
 
+-- Bonus Salary given the work experience 
 go
 CREATE PROCEDURE ApplyBonus
 AS
@@ -125,7 +128,7 @@ BEGIN
         FROM Funcionario) AS FuncionarioWithExperience
 END;
 go
-
+--------------------------------------Search------------------------------------
 go
 CREATE PROCEDURE SearchFuncionario
     @Search VARCHAR(256) = NULL
@@ -157,7 +160,7 @@ BEGIN
         OR (Nome LIKE '%' + @Search + '%')
 END;
 go
-
+--------------------------------------ORDER BY-----------------------------
 go
 CREATE PROCEDURE GetFuncionariosOrderedBySalario
 AS
@@ -274,6 +277,41 @@ BEGIN
     ORDER BY
         Data_inicio_trabalho ASC;
 END;
+go
+
+--------------------------------------CartaoTrabalho-----------------------------
+
+--Produce CartaoTrabalho and associate it with a Funcionario
+CREATE PROCEDURE GenerateCartaoTrabalho
+    @Observacoes VARCHAR(64)
+AS
+BEGIN
+    DECLARE @ID_CartaoTrabalho INT;
+    DECLARE @Data_Validade DATE;
+    DECLARE @Data_Emissao DATE;
+
+    SELECT @Data_Emissao = GETDATE();
+    SELECT @Data_Validade = DATEADD(year, 4, @Data_Emissao);
+
+    SELECT @ID_CartaoTrabalho = ISNULL(MAX(ID_CartaoTrabalho), 0) + 1 FROM CartaoTrabalho;
+
+    BEGIN TRY
+        BEGIN TRANSACTION;
+            INSERT INTO CartaoTrabalho(ID_CartaoTrabalho, Data_Validade, Data_Emissao, Observacoes)
+            VALUES(@ID_CartaoTrabalho, @Data_Validade, @Data_Emissao, @Observacoes);
+        COMMIT;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK;
+        DECLARE @ErrMsg nvarchar(4000), @ErrSeverity INT;
+        SELECT @ErrMsg = ERROR_MESSAGE(),
+               @ErrSeverity = ERROR_SEVERITY();
+        RAISERROR(@ErrMsg, @ErrSeverity, 1);
+    END CATCH;
+END;
+go
+
+
 
 --EXEC AddFuncionario 
 --    @ID_Funcionario = 6, 
