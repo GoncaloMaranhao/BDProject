@@ -9,6 +9,9 @@ go
 
 DROP TRIGGER trg_Funcionario_Delete_All;
 DROP TRIGGER trg_CartaoTrabalho_Delete;
+DROP TRIGGER trg_before_delete_departamento;
+DROP TRIGGER trg_before_delete_engenheiro;
+
 go
 
 -- Delete Funcionario
@@ -59,3 +62,52 @@ BEGIN
 END;
 go
 
+CREATE TRIGGER trg_before_delete_departamento
+ON Departamento
+INSTEAD OF DELETE
+AS
+BEGIN
+    BEGIN TRANSACTION;
+    BEGIN TRY
+        -- remove the department as a manager
+        UPDATE Departamento
+        SET ID_Gerente = NULL
+        WHERE ID_Gerente IN (SELECT ID_Departamento FROM deleted);
+
+        -- then delete the department
+        DELETE FROM Departamento
+        WHERE ID_Departamento IN (SELECT ID_Departamento FROM deleted);
+
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRANSACTION;
+        RAISERROR('Error occurred during deletion of Departamento', 16, 1);
+    END CATCH;
+END;
+go
+
+CREATE TRIGGER trg_before_delete_engenheiro
+ON Engenheiro
+INSTEAD OF DELETE
+AS
+BEGIN
+    BEGIN TRANSACTION;
+    BEGIN TRY
+        -- remove the engineer as a manager
+        UPDATE Departamento
+        SET ID_Gerente = NULL
+        WHERE ID_Gerente IN (SELECT ID_Engenheiro FROM deleted);
+
+        -- then delete the engineer
+        DELETE FROM Engenheiro
+        WHERE ID_Engenheiro IN (SELECT ID_Engenheiro FROM deleted);
+
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRANSACTION;
+        RAISERROR('Error occurred during deletion of Engenheiro', 16, 1);
+    END CATCH;
+END;
+go

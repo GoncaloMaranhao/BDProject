@@ -16,6 +16,10 @@ DROP PROCEDURE sp_GetCartaoTrabalhoOrdered;
 DROP PROCEDURE SearchCartaoTrabalho;
 DROP PROCEDURE SearchCartaoTrabalhoByName;
 DROP PROCEDURE DeleteCartaoTrabalho;
+DROP PROCEDURE AddDepartamento; 
+DROP PROCEDURE RemoveDepartamento; 
+DROP PROCEDURE AddEngenheiroManager;
+DROP PROCEDURE RemoveEngenheiroManager;
 
 go
 
@@ -393,3 +397,68 @@ END
 go
 
 
+--------------------------------------Departamento-----------------------------
+CREATE PROCEDURE AddDepartamento 
+    @ID_Departamento INT,
+    @Nome VARCHAR (256),
+    @Orcamento DECIMAL(10, 2),
+    @Tipo VARCHAR(256),
+    @TaxaEmissao DECIMAL(10, 2),
+    @TaxaReciclagem DECIMAL(10, 2),
+    @ResiduoGerado DECIMAL(10, 2)
+AS
+BEGIN
+    INSERT INTO Departamento(ID_Departamento, Nome, Orcamento, Tipo, TaxaEmissao, TaxaReciclagem, ResiduoGerado)
+    VALUES (@ID_Departamento, @Nome, @Orcamento, @Tipo, @TaxaEmissao, @TaxaReciclagem, @ResiduoGerado)
+END
+go
+
+CREATE PROCEDURE RemoveDepartamento 
+    @ID_Departamento INT
+AS
+BEGIN
+    DELETE FROM Departamento WHERE ID_Departamento = @ID_Departamento
+END
+go
+
+CREATE PROCEDURE AddEngenheiroManager
+    @ID_Departamento INT,
+    @ID_Engenheiro INT
+AS
+BEGIN
+    -- Check if the department already has a manager.
+    IF NOT EXISTS (SELECT 1 FROM Departamento WHERE ID_Departamento = @ID_Departamento AND ID_Gerente IS NOT NULL)
+    BEGIN
+        -- Check if the person is an engineer.
+        IF EXISTS (SELECT 1 FROM Engenheiro WHERE ID_Engenheiro = @ID_Engenheiro)
+        BEGIN
+            -- Get the ID_Funcionario of the Engenheiro.
+            DECLARE @ID_Funcionario INT;
+            SELECT @ID_Funcionario = ID_Funcionario FROM Engenheiro WHERE ID_Engenheiro = @ID_Engenheiro;
+
+            -- Update the department manager with the ID_Funcionario of the Engenheiro.
+            UPDATE Departamento
+            SET ID_Gerente = @ID_Funcionario
+            WHERE ID_Departamento = @ID_Departamento;
+        END
+        ELSE
+        BEGIN
+            RAISERROR('The person is not an engineer.', 16, 1)
+        END
+    END
+    ELSE
+    BEGIN
+        RAISERROR('The department already has a manager.', 16, 1)
+    END
+END
+
+
+CREATE PROCEDURE RemoveEngenheiroManager
+    @ID_Departamento INT
+AS
+BEGIN
+    UPDATE Departamento
+    SET ID_Gerente = NULL
+    WHERE ID_Departamento = @ID_Departamento
+END
+go

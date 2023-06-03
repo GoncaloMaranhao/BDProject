@@ -4,6 +4,7 @@ go
 DROP FUNCTION GetNextFuncionarioID;
 DROP FUNCTION dbo.GetBonusPercent;
 DROP FUNCTION fn_GetEstado;
+DROP FUNCTION NextDepartamentoID;
 
 -- Increment Funcionario ID
 go
@@ -46,4 +47,17 @@ BEGIN
     RETURN @Estado
 END
 go
+
+-- Increment ID_Departamento
+CREATE FUNCTION NextDepartamentoID()
+RETURNS INT
+AS
+BEGIN
+    DECLARE @NextID INT;
+
+    SELECT @NextID = ISNULL(MAX(ID_Departamento), 0) + 1 FROM Departamento;
+
+    RETURN @NextID;
+END
+
 

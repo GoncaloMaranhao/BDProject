@@ -90,6 +90,26 @@ namespace BDProject
                 dataGridView3.DataSource = dt;
             }
 
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM DepartmentView ", con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                dataGridView5.DataSource = dt;
+            }
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM EngenheiroView", con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                dataGridView6.DataSource = dt;
+            }
+
             txtID_FuncionarioRemove.Visible = false;
             labelIDRemove.Visible = false;
             btnSubmitRemove.Visible = false;
@@ -134,6 +154,32 @@ namespace BDProject
             lblIDCartTrab.Visible = false;
             tbIDCartTrab.Visible = false;
             btnSubmitRemoveCard.Visible = false;
+
+            // Dep buttons
+            lbID_Eng.Visible = false;
+            lblID_Department.Visible = false;
+            btnD_Eng.Visible = false;
+            tBlblID_Department.Visible = false;
+            Submit10.Visible = false;
+            lblIDEng.Visible = false;
+            tBIDEng.Visible = false;
+            Submit11.Visible = false;
+            lblDepName.Visible = false;
+            textBox2.Visible = false;
+            label7.Visible = false;
+            textBox3.Visible = false;
+            Iasdf.Visible = false;
+            textBox4.Visible = false;
+            label8.Visible = false;
+            textBox5.Visible = false;
+            label9.Visible = false;
+            textBox6.Visible = false;
+            label10.Visible = false;
+            textBox7.Visible = false;
+            btnSubmitAddDep.Visible = false;
+            ID_Department.Visible = false;
+            textBox8.Visible = false;
+            btnSubmitRemoveDep.Visible = false;
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -203,7 +249,6 @@ namespace BDProject
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 con.Open();
-                // VIEW AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
                 SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Funcionario", con);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -228,6 +273,42 @@ namespace BDProject
 
                     dataGridView3.DataSource = dataTable;
                     dataGridView3.Refresh();
+                }
+            }
+        }
+
+        private void RefreshDepartmentData()
+        {
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                using (var command = new SqlCommand("SELECT * FROM DepartmentView ", conn))
+                using (var adapter = new SqlDataAdapter(command))
+                {
+                    var dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                    dataGridView5.DataSource = dataTable;
+                    dataGridView5.Refresh();
+                }
+            }
+        }
+
+        private void RefreshEngenheiroData()
+        {
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                using (var command = new SqlCommand("SELECT * FROM EngenheiroView ", conn))
+                using (var adapter = new SqlDataAdapter(command))
+                {
+                    var dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                    dataGridView6.DataSource = dataTable;
+                    dataGridView6.Refresh();
                 }
             }
         }
@@ -631,8 +712,6 @@ namespace BDProject
             }
         }
 
-
-
         private void btnCarTraOrder_Click(object sender, EventArgs e)
         {
             string query = "EXEC sp_GetCartaoTrabalhoOrdered";
@@ -700,6 +779,172 @@ namespace BDProject
             tbIDCartTrab.Visible = false;
             btnSubmitRemoveCard.Visible = false;
             RefreshCartaoTrabalhoData();
+        }
+
+        private void button9_Click_1(object sender, EventArgs e)
+        {
+            ID_Department.Visible = true;
+            textBox8.Visible = true;
+            btnSubmitRemoveDep.Visible = true;
+        }
+
+        private void lblDepName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAddEnginner_Click(object sender, EventArgs e)
+        {
+            lbID_Eng.Visible = true;
+            lblID_Department.Visible = true;
+            btnD_Eng.Visible = true;
+            tBlblID_Department.Visible = true;
+            Submit10.Visible = true;
+        }
+
+        private void Submit10_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(btnD_Eng.Text, out int idEngenheiro) && int.TryParse(tBlblID_Department.Text, out int idDepartamento))
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("AddEngenheiroManager", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@ID_Departamento", idDepartamento);
+                    cmd.Parameters.AddWithValue("@ID_Engenheiro", idEngenheiro);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                RefreshDepartmentData();
+                RefreshEngenheiroData();
+            }
+
+
+            lbID_Eng.Visible = false;
+            lblID_Department.Visible = false;
+            btnD_Eng.Visible = false;
+            tBlblID_Department.Visible = false;
+            Submit10.Visible = false;
+        }
+
+        private void btnRemoveEnginner_Click(object sender, EventArgs e)
+        {
+            lblIDEng.Visible = true;
+            tBIDEng.Visible = true;
+            Submit11.Visible = true;
+        }
+
+        private void Submit11_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(tBIDEng.Text, out int idEngenheiro))
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("RemoveEngenheiroManager", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@ID_Departamento", idEngenheiro);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            lblIDEng.Visible = false;
+            tBIDEng.Visible = false;
+            Submit11.Visible = false;
+            RefreshDepartmentData();
+            RefreshEngenheiroData();
+        }
+
+        private void btnAddDep_Click(object sender, EventArgs e)
+        {
+            lblDepName.Visible = true;
+            textBox2.Visible = true;
+            label7.Visible = true;
+            textBox3.Visible = true;
+            Iasdf.Visible = true;
+            textBox4.Visible = true;
+            label8.Visible = true;
+            textBox5.Visible = true;
+            label9.Visible = true;
+            textBox6.Visible = true;
+            label10.Visible = true;
+            textBox7.Visible = true;
+            btnSubmitAddDep.Visible = true;
+        }
+
+        private void btnSubmitAddDep_Click(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(textBox3.Text, out decimal orcamento) && decimal.TryParse(textBox5.Text, out decimal taxaEmissao) && decimal.TryParse(textBox6.Text, out decimal taxaReciclagem) && decimal.TryParse(textBox7.Text, out decimal residuoGerado))
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("AddDepartamento", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@Nome", textBox2.Text);
+                    cmd.Parameters.AddWithValue("@Orcamento", decimal.Parse(textBox3.Text));
+                    cmd.Parameters.AddWithValue("@TaxaEmissao", decimal.Parse(textBox5.Text));
+                    cmd.Parameters.AddWithValue("@TaxaReciclagem", decimal.Parse(textBox6.Text));
+                    cmd.Parameters.AddWithValue("@ResiduoGerado", decimal.Parse(textBox7.Text));
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            lblDepName.Visible = false;
+            textBox2.Visible = false;
+            label7.Visible = false;
+            textBox3.Visible = false;
+            Iasdf.Visible = false;
+            textBox4.Visible = false;
+            label8.Visible = false;
+            textBox5.Visible = false;
+            label9.Visible = false;
+            textBox6.Visible = false;
+            label10.Visible = false;
+            textBox7.Visible = false;
+            btnSubmitAddDep.Visible = false;
+            RefreshDepartmentData();
+            RefreshEngenheiroData();
+
+        }
+
+        private void dataGridView5_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM DepartmentView", conn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dataGridView5.DataSource = dt;
+            }
+        }
+
+        private void btnSubmitRemoveDep_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("RemoveDepartamento", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ID_Departamento", int.Parse(textBox8.Text));
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+
+            ID_Department.Visible = false;
+            textBox8.Visible = false;
+            btnSubmitRemoveDep.Visible = false;
+
+            RefreshDepartmentData();
+            RefreshEngenheiroData();
+
         }
     }
 }

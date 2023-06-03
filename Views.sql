@@ -3,6 +3,8 @@ go
 
 DROP VIEW FuncionarioWithAge;
 DROP VIEW vw_CartaoTrabalho;
+DROP VIEW DepartmentView;
+DROP VIEW EngenheiroView;
 
 go
 CREATE VIEW FuncionarioWithAge AS
@@ -33,8 +35,20 @@ go
 -- To see active or inactive cartao trabalho
 CREATE VIEW vw_CartaoTrabalho
 AS
-SELECT ct.ID_Funcionario, f.Nome as Funcionario, ct.ID_CartaoTrabalho, dbo.fn_GetEstado(ct.Data_Validade) as Estado, ct.Data_Validade, ct.Data_Emissao
+SELECT ct.ID_CartaoTrabalho, 
+       f.Nome as Funcionario, 
+       ct.ID_Funcionario, 
+       dbo.fn_GetEstado(ct.Data_Validade) as Estado, 
+       ct.Data_Validade, 
+       ct.Data_Emissao
 FROM CartaoTrabalho ct
-JOIN Funcionario f ON f.ID_Funcionario = ct.ID_Funcionario;
+LEFT JOIN Funcionario f ON f.ID_Funcionario = ct.ID_Funcionario;
 go
+
+CREATE VIEW DepartmentView AS
+SELECT * FROM Departamento
+go
+
+CREATE VIEW EngenheiroView AS
+SELECT * FROM Engenheiro
 

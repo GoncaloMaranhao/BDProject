@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabPage1 = new System.Windows.Forms.TabControl();
             this.Func = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
             this.lblDataRenovacaoCarta = new System.Windows.Forms.Label();
             this.labelTurno = new System.Windows.Forms.Label();
             this.labelCartaEspecial = new System.Windows.Forms.Label();
@@ -76,6 +77,7 @@
             this.AddFuncionarioButton = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnSubmitRemoveCard = new System.Windows.Forms.Button();
             this.tbIDCartTrab = new System.Windows.Forms.TextBox();
             this.lblIDCartTrab = new System.Windows.Forms.Label();
@@ -95,6 +97,36 @@
             this.btnProCard = new System.Windows.Forms.Button();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dataGridView6 = new System.Windows.Forms.DataGridView();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.Iasdf = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.lblIDEng = new System.Windows.Forms.Label();
+            this.Submit11 = new System.Windows.Forms.Button();
+            this.Submit10 = new System.Windows.Forms.Button();
+            this.tBIDEng = new System.Windows.Forms.TextBox();
+            this.lblID_Department = new System.Windows.Forms.Label();
+            this.lbID_Eng = new System.Windows.Forms.Label();
+            this.tBlblID_Department = new System.Windows.Forms.TextBox();
+            this.btnD_Eng = new System.Windows.Forms.TextBox();
+            this.ID_Department = new System.Windows.Forms.Label();
+            this.btnSubmitRemoveDep = new System.Windows.Forms.Button();
+            this.btnSubmitAddDep = new System.Windows.Forms.Button();
+            this.btnRemoveEnginner = new System.Windows.Forms.Button();
+            this.btnAddEnginner = new System.Windows.Forms.Button();
+            this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.lblDepName = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.btnRemoveDep = new System.Windows.Forms.Button();
+            this.btnAddDep = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabPage6 = new System.Windows.Forms.TabPage();
@@ -108,14 +140,20 @@
             this.tabPage14 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.dataGridView7 = new System.Windows.Forms.DataGridView();
+            this.textBox8 = new System.Windows.Forms.TextBox();
             this.tabPage1.SuspendLayout();
             this.Func.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.tabPage14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPage1
@@ -138,11 +176,12 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.SelectedIndex = 0;
-            this.tabPage1.Size = new System.Drawing.Size(1662, 926);
+            this.tabPage1.Size = new System.Drawing.Size(1976, 1069);
             this.tabPage1.TabIndex = 0;
             // 
             // Func
             // 
+            this.Func.Controls.Add(this.label5);
             this.Func.Controls.Add(this.lblDataRenovacaoCarta);
             this.Func.Controls.Add(this.labelTurno);
             this.Func.Controls.Add(this.labelCartaEspecial);
@@ -191,11 +230,20 @@
             this.Func.Margin = new System.Windows.Forms.Padding(2);
             this.Func.Name = "Func";
             this.Func.Padding = new System.Windows.Forms.Padding(2);
-            this.Func.Size = new System.Drawing.Size(1654, 888);
+            this.Func.Size = new System.Drawing.Size(1968, 1031);
             this.Func.TabIndex = 0;
             this.Func.Text = "tabPage1";
             this.Func.UseVisualStyleBackColor = true;
             this.Func.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(5, 6);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(137, 25);
+            this.label5.TabIndex = 49;
+            this.label5.Text = "FuncionarioOps";
             // 
             // lblDataRenovacaoCarta
             // 
@@ -633,6 +681,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Controls.Add(this.btnSubmitRemoveCard);
             this.tabPage2.Controls.Add(this.tbIDCartTrab);
             this.tabPage2.Controls.Add(this.lblIDCartTrab);
@@ -655,10 +704,19 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(1654, 888);
+            this.tabPage2.Size = new System.Drawing.Size(1968, 1031);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(21, 14);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(164, 25);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "CartaoTrabalhoOps";
             // 
             // btnSubmitRemoveCard
             // 
@@ -826,14 +884,310 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.textBox8);
+            this.tabPage3.Controls.Add(this.dataGridView7);
+            this.tabPage3.Controls.Add(this.dataGridView6);
+            this.tabPage3.Controls.Add(this.label11);
+            this.tabPage3.Controls.Add(this.label10);
+            this.tabPage3.Controls.Add(this.label9);
+            this.tabPage3.Controls.Add(this.label8);
+            this.tabPage3.Controls.Add(this.textBox7);
+            this.tabPage3.Controls.Add(this.textBox6);
+            this.tabPage3.Controls.Add(this.textBox5);
+            this.tabPage3.Controls.Add(this.Iasdf);
+            this.tabPage3.Controls.Add(this.textBox4);
+            this.tabPage3.Controls.Add(this.label7);
+            this.tabPage3.Controls.Add(this.textBox3);
+            this.tabPage3.Controls.Add(this.lblIDEng);
+            this.tabPage3.Controls.Add(this.Submit11);
+            this.tabPage3.Controls.Add(this.Submit10);
+            this.tabPage3.Controls.Add(this.tBIDEng);
+            this.tabPage3.Controls.Add(this.lblID_Department);
+            this.tabPage3.Controls.Add(this.lbID_Eng);
+            this.tabPage3.Controls.Add(this.tBlblID_Department);
+            this.tabPage3.Controls.Add(this.btnD_Eng);
+            this.tabPage3.Controls.Add(this.ID_Department);
+            this.tabPage3.Controls.Add(this.btnSubmitRemoveDep);
+            this.tabPage3.Controls.Add(this.btnSubmitAddDep);
+            this.tabPage3.Controls.Add(this.btnRemoveEnginner);
+            this.tabPage3.Controls.Add(this.btnAddEnginner);
+            this.tabPage3.Controls.Add(this.dataGridView5);
+            this.tabPage3.Controls.Add(this.lblDepName);
+            this.tabPage3.Controls.Add(this.textBox2);
+            this.tabPage3.Controls.Add(this.btnRemoveDep);
+            this.tabPage3.Controls.Add(this.btnAddDep);
             this.tabPage3.Location = new System.Drawing.Point(4, 34);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage3.Size = new System.Drawing.Size(1654, 888);
+            this.tabPage3.Size = new System.Drawing.Size(1968, 1031);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView6
+            // 
+            this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView6.Location = new System.Drawing.Point(0, 430);
+            this.dataGridView6.Name = "dataGridView6";
+            this.dataGridView6.RowHeadersWidth = 62;
+            this.dataGridView6.RowTemplate.Height = 33;
+            this.dataGridView6.Size = new System.Drawing.Size(450, 462);
+            this.dataGridView6.TabIndex = 32;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(14, 14);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(127, 25);
+            this.label11.TabIndex = 31;
+            this.label11.Text = "Departamento";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(1332, 276);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(133, 25);
+            this.label10.TabIndex = 30;
+            this.label10.Text = "ResiduoGerado";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(1176, 276);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(133, 25);
+            this.label9.TabIndex = 29;
+            this.label9.Text = "TaxaReciclagem";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(1007, 278);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(110, 25);
+            this.label8.TabIndex = 28;
+            this.label8.Text = "TaxaEmissao";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(1332, 304);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(150, 31);
+            this.textBox7.TabIndex = 27;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(1176, 304);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(150, 31);
+            this.textBox6.TabIndex = 26;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(1007, 306);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(150, 31);
+            this.textBox5.TabIndex = 25;
+            // 
+            // Iasdf
+            // 
+            this.Iasdf.AutoSize = true;
+            this.Iasdf.Location = new System.Drawing.Point(836, 278);
+            this.Iasdf.Name = "Iasdf";
+            this.Iasdf.Size = new System.Drawing.Size(98, 25);
+            this.Iasdf.TabIndex = 24;
+            this.Iasdf.Text = "ID_Gerente";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(836, 306);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(150, 31);
+            this.textBox4.TabIndex = 23;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(1420, 194);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(101, 25);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Orcamento";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(1420, 234);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(150, 31);
+            this.textBox3.TabIndex = 21;
+            // 
+            // lblIDEng
+            // 
+            this.lblIDEng.AutoSize = true;
+            this.lblIDEng.Location = new System.Drawing.Point(392, 278);
+            this.lblIDEng.Name = "lblIDEng";
+            this.lblIDEng.Size = new System.Drawing.Size(141, 25);
+            this.lblIDEng.TabIndex = 20;
+            this.lblIDEng.Text = "ID_Departament";
+            // 
+            // Submit11
+            // 
+            this.Submit11.Location = new System.Drawing.Point(564, 284);
+            this.Submit11.Name = "Submit11";
+            this.Submit11.Size = new System.Drawing.Size(184, 88);
+            this.Submit11.TabIndex = 19;
+            this.Submit11.Text = "Submit";
+            this.Submit11.UseVisualStyleBackColor = true;
+            this.Submit11.Click += new System.EventHandler(this.Submit11_Click);
+            // 
+            // Submit10
+            // 
+            this.Submit10.Location = new System.Drawing.Point(733, 84);
+            this.Submit10.Name = "Submit10";
+            this.Submit10.Size = new System.Drawing.Size(131, 68);
+            this.Submit10.TabIndex = 18;
+            this.Submit10.Text = "Submit";
+            this.Submit10.UseVisualStyleBackColor = true;
+            this.Submit10.Click += new System.EventHandler(this.Submit10_Click);
+            // 
+            // tBIDEng
+            // 
+            this.tBIDEng.Location = new System.Drawing.Point(392, 313);
+            this.tBIDEng.Name = "tBIDEng";
+            this.tBIDEng.Size = new System.Drawing.Size(150, 31);
+            this.tBIDEng.TabIndex = 17;
+            // 
+            // lblID_Department
+            // 
+            this.lblID_Department.AutoSize = true;
+            this.lblID_Department.Location = new System.Drawing.Point(554, 81);
+            this.lblID_Department.Name = "lblID_Department";
+            this.lblID_Department.Size = new System.Drawing.Size(132, 25);
+            this.lblID_Department.TabIndex = 16;
+            this.lblID_Department.Text = "ID_Department";
+            // 
+            // lbID_Eng
+            // 
+            this.lbID_Eng.AutoSize = true;
+            this.lbID_Eng.Location = new System.Drawing.Point(392, 81);
+            this.lbID_Eng.Name = "lbID_Eng";
+            this.lbID_Eng.Size = new System.Drawing.Size(126, 25);
+            this.lbID_Eng.TabIndex = 15;
+            this.lbID_Eng.Text = "ID_Engenheiro";
+            // 
+            // tBlblID_Department
+            // 
+            this.tBlblID_Department.Location = new System.Drawing.Point(554, 114);
+            this.tBlblID_Department.Name = "tBlblID_Department";
+            this.tBlblID_Department.Size = new System.Drawing.Size(150, 31);
+            this.tBlblID_Department.TabIndex = 14;
+            // 
+            // btnD_Eng
+            // 
+            this.btnD_Eng.Location = new System.Drawing.Point(392, 115);
+            this.btnD_Eng.Name = "btnD_Eng";
+            this.btnD_Eng.Size = new System.Drawing.Size(150, 31);
+            this.btnD_Eng.TabIndex = 13;
+            // 
+            // ID_Department
+            // 
+            this.ID_Department.AutoSize = true;
+            this.ID_Department.Location = new System.Drawing.Point(1110, 53);
+            this.ID_Department.Name = "ID_Department";
+            this.ID_Department.Size = new System.Drawing.Size(70, 25);
+            this.ID_Department.TabIndex = 12;
+            this.ID_Department.Text = "Dep_ID";
+            // 
+            // btnSubmitRemoveDep
+            // 
+            this.btnSubmitRemoveDep.Location = new System.Drawing.Point(1326, 70);
+            this.btnSubmitRemoveDep.Name = "btnSubmitRemoveDep";
+            this.btnSubmitRemoveDep.Size = new System.Drawing.Size(126, 75);
+            this.btnSubmitRemoveDep.TabIndex = 11;
+            this.btnSubmitRemoveDep.Text = "Submit";
+            this.btnSubmitRemoveDep.UseVisualStyleBackColor = true;
+            this.btnSubmitRemoveDep.Click += new System.EventHandler(this.btnSubmitRemoveDep_Click);
+            // 
+            // btnSubmitAddDep
+            // 
+            this.btnSubmitAddDep.Location = new System.Drawing.Point(1508, 276);
+            this.btnSubmitAddDep.Name = "btnSubmitAddDep";
+            this.btnSubmitAddDep.Size = new System.Drawing.Size(126, 75);
+            this.btnSubmitAddDep.TabIndex = 10;
+            this.btnSubmitAddDep.Text = "Submit";
+            this.btnSubmitAddDep.UseVisualStyleBackColor = true;
+            this.btnSubmitAddDep.Click += new System.EventHandler(this.btnSubmitAddDep_Click);
+            // 
+            // btnRemoveEnginner
+            // 
+            this.btnRemoveEnginner.Location = new System.Drawing.Point(116, 244);
+            this.btnRemoveEnginner.Name = "btnRemoveEnginner";
+            this.btnRemoveEnginner.Size = new System.Drawing.Size(253, 150);
+            this.btnRemoveEnginner.TabIndex = 9;
+            this.btnRemoveEnginner.Text = "Remover um Engeheiro Gerente de Departamento";
+            this.btnRemoveEnginner.UseVisualStyleBackColor = true;
+            this.btnRemoveEnginner.Click += new System.EventHandler(this.btnRemoveEnginner_Click);
+            // 
+            // btnAddEnginner
+            // 
+            this.btnAddEnginner.Location = new System.Drawing.Point(116, 54);
+            this.btnAddEnginner.Name = "btnAddEnginner";
+            this.btnAddEnginner.Size = new System.Drawing.Size(253, 150);
+            this.btnAddEnginner.TabIndex = 8;
+            this.btnAddEnginner.Text = "Tornar um Engeheiro Gerente de Departamento";
+            this.btnAddEnginner.UseVisualStyleBackColor = true;
+            this.btnAddEnginner.Click += new System.EventHandler(this.btnAddEnginner_Click);
+            // 
+            // dataGridView5
+            // 
+            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView5.Location = new System.Drawing.Point(457, 430);
+            this.dataGridView5.Name = "dataGridView5";
+            this.dataGridView5.RowHeadersWidth = 62;
+            this.dataGridView5.RowTemplate.Height = 33;
+            this.dataGridView5.Size = new System.Drawing.Size(717, 462);
+            this.dataGridView5.TabIndex = 7;
+            this.dataGridView5.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellContentClick);
+            // 
+            // lblDepName
+            // 
+            this.lblDepName.AutoSize = true;
+            this.lblDepName.Location = new System.Drawing.Point(1096, 194);
+            this.lblDepName.Name = "lblDepName";
+            this.lblDepName.Size = new System.Drawing.Size(61, 25);
+            this.lblDepName.TabIndex = 6;
+            this.lblDepName.Text = "Nome";
+            this.lblDepName.Click += new System.EventHandler(this.lblDepName_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(1096, 234);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(305, 31);
+            this.textBox2.TabIndex = 3;
+            // 
+            // btnRemoveDep
+            // 
+            this.btnRemoveDep.Location = new System.Drawing.Point(888, 70);
+            this.btnRemoveDep.Name = "btnRemoveDep";
+            this.btnRemoveDep.Size = new System.Drawing.Size(193, 89);
+            this.btnRemoveDep.TabIndex = 1;
+            this.btnRemoveDep.Text = "RemoveDepartment";
+            this.btnRemoveDep.UseVisualStyleBackColor = true;
+            this.btnRemoveDep.Click += new System.EventHandler(this.button9_Click_1);
+            // 
+            // btnAddDep
+            // 
+            this.btnAddDep.Location = new System.Drawing.Point(888, 194);
+            this.btnAddDep.Name = "btnAddDep";
+            this.btnAddDep.Size = new System.Drawing.Size(177, 71);
+            this.btnAddDep.TabIndex = 0;
+            this.btnAddDep.Text = "AddDepartment";
+            this.btnAddDep.UseVisualStyleBackColor = true;
+            this.btnAddDep.Click += new System.EventHandler(this.btnAddDep_Click);
             // 
             // tabPage4
             // 
@@ -974,11 +1328,28 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // dataGridView7
+            // 
+            this.dataGridView7.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView7.Location = new System.Drawing.Point(1180, 430);
+            this.dataGridView7.Name = "dataGridView7";
+            this.dataGridView7.RowHeadersWidth = 62;
+            this.dataGridView7.RowTemplate.Height = 33;
+            this.dataGridView7.Size = new System.Drawing.Size(408, 462);
+            this.dataGridView7.TabIndex = 33;
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(1110, 81);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(180, 31);
+            this.textBox8.TabIndex = 34;
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1744, 958);
+            this.ClientSize = new System.Drawing.Size(1999, 1092);
             this.Controls.Add(this.tabPage1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "mainForm";
@@ -992,8 +1363,13 @@
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             this.tabPage14.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1003,7 +1379,6 @@
         private TabControl tabPage1;
         private TabPage Func;
         private TabPage tabPage2;
-        private TabPage tabPage3;
         private TabPage tabPage4;
         private TabPage tabPage5;
         private TabPage tabPage6;
@@ -1079,5 +1454,40 @@
         private Label lblIDCartTrab;
         private Button btnSubmitRemoveCard;
         private TextBox tbIDCartTrab;
+        private Label label5;
+        private Label label4;
+        private TabPage tabPage3;
+        private Label label10;
+        private Label label9;
+        private Label label8;
+        private TextBox textBox7;
+        private TextBox textBox6;
+        private TextBox textBox5;
+        private Label Iasdf;
+        private TextBox textBox4;
+        private Label label7;
+        private TextBox textBox3;
+        private Label lblIDEng;
+        private Button Submit11;
+        private Button Submit10;
+        private TextBox tBIDEng;
+        private Label lblID_Department;
+        private Label lbID_Eng;
+        private TextBox tBlblID_Department;
+        private TextBox btnD_Eng;
+        private Label ID_Department;
+        private Button btnSubmitRemoveDep;
+        private Button btnSubmitAddDep;
+        private Button btnRemoveEnginner;
+        private Button btnAddEnginner;
+        private DataGridView dataGridView5;
+        private Label lblDepName;
+        private TextBox textBox2;
+        private Button btnRemoveDep;
+        private Button btnAddDep;
+        private Label label11;
+        private DataGridView dataGridView6;
+        private TextBox textBox8;
+        private DataGridView dataGridView7;
     }
 }

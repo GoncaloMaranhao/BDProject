@@ -39,6 +39,8 @@ INSERT INTO Engenheiro VALUES (2, 2, 'Electrical Engineering');
 INSERT INTO Engenheiro VALUES (3, 3, 'Mechanical Engineering');
 INSERT INTO Engenheiro VALUES (4, 4, 'Chemical Engineering');
 INSERT INTO Engenheiro VALUES (5, 5, 'Software Engineering');
+INSERT INTO Engenheiro VALUES (6, 6, 'Software Engineering');
+
 
 INSERT INTO Motorista VALUES (1, 1, '2023-01-01', 'Y');
 INSERT INTO Motorista VALUES (2, 2, '2024-01-01', 'N');
