@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 
 namespace BDProject
@@ -79,6 +80,16 @@ namespace BDProject
                 dataGridView2.DataSource = dt;
             }
 
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM vw_CartaoTrabalho", con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                dataGridView3.DataSource = dt;
+            }
+
             txtID_FuncionarioRemove.Visible = false;
             labelIDRemove.Visible = false;
             btnSubmitRemove.Visible = false;
@@ -113,6 +124,13 @@ namespace BDProject
             labelCartaEspecial.Visible = false;
             labelTurno.Visible = false;
             lblDataRenovacaoCarta.Visible = false;
+
+            // CartaoTrabalho buttons
+            lblIDCarTra.Visible = false;
+            lblIDFun.Visible = false;
+            txtIDCarTra.Visible = false;
+            txtIDCarFun.Visible = false;
+            btnSubmitCarTra.Visible = false;
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -190,6 +208,27 @@ namespace BDProject
                 dataGridView2.DataSource = dt;
             }
         }
+
+        
+
+        private void RefreshCartaoTrabalhoData()
+        {
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                using (var command = new SqlCommand("SELECT * FROM vw_CartaoTrabalho", conn))
+                using (var adapter = new SqlDataAdapter(command))
+                {
+                    var dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                    dataGridView3.DataSource = dataTable;
+                    dataGridView3.Refresh();
+                }
+            }
+        }
+
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
@@ -515,7 +554,18 @@ namespace BDProject
 
         private void button8_Click(object sender, EventArgs e)
         {
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
 
+                using (var command = new SqlCommand("GenerateCartaoTrabalho", conn))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            RefreshCartaoTrabalhoData();
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -525,12 +575,61 @@ namespace BDProject
 
         private void button9_Click(object sender, EventArgs e)
         {
-
+            lblIDCarTra.Visible = true;
+            lblIDFun.Visible = true;
+            txtIDCarTra.Visible = true;
+            txtIDCarFun.Visible = true;
+            btnSubmitCarTra.Visible = true;
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
 
+                using (var command = new SqlCommand("AssociateCartaoToFuncionario", conn))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ID_CartaoTrabalho", txtIDCarTra.Text);
+                    command.Parameters.AddWithValue("@ID_Funcionario", txtIDCarFun.Text);
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            lblIDCarTra.Visible = false;
+            lblIDFun.Visible = false;
+            txtIDCarTra.Visible = false;
+            txtIDCarFun.Visible = false;
+            btnSubmitCarTra.Visible = false;
+
+            RefreshCartaoTrabalhoData();
+        }
+
+        private void SearchCartTrab_TextChanged(object sender, EventArgs e)
+        {
+
+            {
+                using (var conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    using (var command = new SqlCommand("SearchCartaoTrabalho", conn))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@SearchTerm", SearchCartTrab.Text);
+
+                        using (var adapter = new SqlDataAdapter(command))
+                        {
+                            var dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+
+                            dataGridView4.DataSource = dataTable;
+                        }
+                    }
+                }
+
+            }
         }
     }
 }

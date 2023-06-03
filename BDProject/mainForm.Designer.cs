@@ -76,14 +76,15 @@
             this.AddFuncionarioButton = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button10 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.txtIDCarFun = new System.Windows.Forms.TextBox();
+            this.txtIDCarTra = new System.Windows.Forms.TextBox();
+            this.lblIDFun = new System.Windows.Forms.Label();
+            this.btnSubmitCarTra = new System.Windows.Forms.Button();
+            this.lblIDCarTra = new System.Windows.Forms.Label();
             this.btnAssocCard = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.SearchCartTrab = new System.Windows.Forms.TextBox();
             this.btnProCard = new System.Windows.Forms.Button();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -100,10 +101,12 @@
             this.tabPage14 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnCarTraOrder = new System.Windows.Forms.Button();
             this.tabPage1.SuspendLayout();
             this.Func.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.tabPage14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -624,14 +627,16 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.textBox4);
-            this.tabPage2.Controls.Add(this.textBox3);
-            this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.button10);
-            this.tabPage2.Controls.Add(this.label3);
+            this.tabPage2.Controls.Add(this.btnCarTraOrder);
+            this.tabPage2.Controls.Add(this.dataGridView4);
+            this.tabPage2.Controls.Add(this.txtIDCarFun);
+            this.tabPage2.Controls.Add(this.txtIDCarTra);
+            this.tabPage2.Controls.Add(this.lblIDFun);
+            this.tabPage2.Controls.Add(this.btnSubmitCarTra);
+            this.tabPage2.Controls.Add(this.lblIDCarTra);
             this.tabPage2.Controls.Add(this.btnAssocCard);
             this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Controls.Add(this.textBox2);
+            this.tabPage2.Controls.Add(this.SearchCartTrab);
             this.tabPage2.Controls.Add(this.btnProCard);
             this.tabPage2.Controls.Add(this.dataGridView3);
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
@@ -643,48 +648,58 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // textBox4
+            // dataGridView4
             // 
-            this.textBox4.Location = new System.Drawing.Point(561, 242);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(150, 31);
-            this.textBox4.TabIndex = 10;
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Location = new System.Drawing.Point(998, 386);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.RowHeadersWidth = 62;
+            this.dataGridView4.RowTemplate.Height = 33;
+            this.dataGridView4.Size = new System.Drawing.Size(651, 502);
+            this.dataGridView4.TabIndex = 11;
             // 
-            // textBox3
+            // txtIDCarFun
             // 
-            this.textBox3.Location = new System.Drawing.Point(374, 242);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(150, 31);
-            this.textBox3.TabIndex = 9;
+            this.txtIDCarFun.Location = new System.Drawing.Point(561, 242);
+            this.txtIDCarFun.Name = "txtIDCarFun";
+            this.txtIDCarFun.Size = new System.Drawing.Size(150, 31);
+            this.txtIDCarFun.TabIndex = 10;
             // 
-            // label5
+            // txtIDCarTra
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(561, 203);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(129, 25);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "ID_Funcionario";
+            this.txtIDCarTra.Location = new System.Drawing.Point(374, 242);
+            this.txtIDCarTra.Name = "txtIDCarTra";
+            this.txtIDCarTra.Size = new System.Drawing.Size(150, 31);
+            this.txtIDCarTra.TabIndex = 9;
             // 
-            // button10
+            // lblIDFun
             // 
-            this.button10.Location = new System.Drawing.Point(830, 231);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(162, 62);
-            this.button10.TabIndex = 6;
-            this.button10.Text = "Submit";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
+            this.lblIDFun.AutoSize = true;
+            this.lblIDFun.Location = new System.Drawing.Point(561, 203);
+            this.lblIDFun.Name = "lblIDFun";
+            this.lblIDFun.Size = new System.Drawing.Size(129, 25);
+            this.lblIDFun.TabIndex = 8;
+            this.lblIDFun.Text = "ID_Funcionario";
             // 
-            // label3
+            // btnSubmitCarTra
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(368, 203);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(156, 25);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "ID_CartaoTrabalho";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.btnSubmitCarTra.Location = new System.Drawing.Point(830, 231);
+            this.btnSubmitCarTra.Name = "btnSubmitCarTra";
+            this.btnSubmitCarTra.Size = new System.Drawing.Size(162, 62);
+            this.btnSubmitCarTra.TabIndex = 6;
+            this.btnSubmitCarTra.Text = "Submit";
+            this.btnSubmitCarTra.UseVisualStyleBackColor = true;
+            this.btnSubmitCarTra.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // lblIDCarTra
+            // 
+            this.lblIDCarTra.AutoSize = true;
+            this.lblIDCarTra.Location = new System.Drawing.Point(368, 203);
+            this.lblIDCarTra.Name = "lblIDCarTra";
+            this.lblIDCarTra.Size = new System.Drawing.Size(156, 25);
+            this.lblIDCarTra.TabIndex = 5;
+            this.lblIDCarTra.Text = "ID_CartaoTrabalho";
+            this.lblIDCarTra.Click += new System.EventHandler(this.label3_Click);
             // 
             // btnAssocCard
             // 
@@ -699,18 +714,19 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1106, 116);
+            this.label2.Location = new System.Drawing.Point(1124, 242);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(248, 25);
             this.label2.TabIndex = 3;
             this.label2.Text = "Search by ID or State(\'A\' or \'I\')";
             // 
-            // textBox2
+            // SearchCartTrab
             // 
-            this.textBox2.Location = new System.Drawing.Point(1106, 150);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(251, 31);
-            this.textBox2.TabIndex = 2;
+            this.SearchCartTrab.Location = new System.Drawing.Point(1124, 288);
+            this.SearchCartTrab.Name = "SearchCartTrab";
+            this.SearchCartTrab.Size = new System.Drawing.Size(251, 31);
+            this.SearchCartTrab.TabIndex = 2;
+            this.SearchCartTrab.TextChanged += new System.EventHandler(this.SearchCartTrab_TextChanged);
             // 
             // btnProCard
             // 
@@ -729,7 +745,7 @@
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 62;
             this.dataGridView3.RowTemplate.Height = 33;
-            this.dataGridView3.Size = new System.Drawing.Size(1651, 506);
+            this.dataGridView3.Size = new System.Drawing.Size(992, 506);
             this.dataGridView3.TabIndex = 0;
             // 
             // tabPage3
@@ -882,6 +898,15 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // btnCarTraOrder
+            // 
+            this.btnCarTraOrder.Location = new System.Drawing.Point(1144, 113);
+            this.btnCarTraOrder.Name = "btnCarTraOrder";
+            this.btnCarTraOrder.Size = new System.Drawing.Size(112, 34);
+            this.btnCarTraOrder.TabIndex = 12;
+            this.btnCarTraOrder.Text = "Order BY ID_Funcionario";
+            this.btnCarTraOrder.UseVisualStyleBackColor = true;
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -898,6 +923,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.tabPage14.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -962,7 +988,7 @@
         private Button button5;
         private Label labelTurno;
         private Label labelAdditionalInfo;
-        private TextBox textBox3;
+        private TextBox txtIDCarTra;
         private TextBox txtAdditionalInfo;
         private ComboBox cmbCartaEspecial;
         private DateTimePicker datePickerDataRenovacaoCarta;
@@ -971,12 +997,14 @@
         private ComboBox cmbTurno;
         private Button btnProCard;
         private DataGridView dataGridView3;
-        private Button button10;
-        private Label label3;
+        private Button btnSubmitCarTra;
+        private Label lblIDCarTra;
         private Button btnAssocCard;
         private Label label2;
-        private TextBox textBox2;
-        private TextBox textBox4;
-        private Label label5;
+        private TextBox SearchCartTrab;
+        private TextBox txtIDCarFun;
+        private Label lblIDFun;
+        private DataGridView dataGridView4;
+        private Button btnCarTraOrder;
     }
 }
