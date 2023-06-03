@@ -730,7 +730,7 @@
             // 
             // btnProCard
             // 
-            this.btnProCard.Location = new System.Drawing.Point(88, 116);
+            this.btnProCard.Location = new System.Drawing.Point(88, 72);
             this.btnProCard.Name = "btnProCard";
             this.btnProCard.Size = new System.Drawing.Size(225, 65);
             this.btnProCard.TabIndex = 1;
@@ -900,12 +900,13 @@
             // 
             // btnCarTraOrder
             // 
-            this.btnCarTraOrder.Location = new System.Drawing.Point(1144, 113);
+            this.btnCarTraOrder.Location = new System.Drawing.Point(425, 69);
             this.btnCarTraOrder.Name = "btnCarTraOrder";
-            this.btnCarTraOrder.Size = new System.Drawing.Size(112, 34);
+            this.btnCarTraOrder.Size = new System.Drawing.Size(231, 68);
             this.btnCarTraOrder.TabIndex = 12;
             this.btnCarTraOrder.Text = "Order BY ID_Funcionario";
             this.btnCarTraOrder.UseVisualStyleBackColor = true;
+            this.btnCarTraOrder.Click += new System.EventHandler(this.btnCarTraOrder_Click);
             // 
             // mainForm
             // 

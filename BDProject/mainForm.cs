@@ -608,28 +608,35 @@ namespace BDProject
 
         private void SearchCartTrab_TextChanged(object sender, EventArgs e)
         {
-
+            using (var conn = new SqlConnection(connectionString))
             {
-                using (var conn = new SqlConnection(connectionString))
+                conn.Open();
+
+                using (var command = new SqlCommand("SearchCartaoTrabalho", conn))
                 {
-                    conn.Open();
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@SearchTerm", SearchCartTrab.Text);
 
-                    using (var command = new SqlCommand("SearchCartaoTrabalho", conn))
+                    using (var adapter = new SqlDataAdapter(command))
                     {
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@SearchTerm", SearchCartTrab.Text);
+                        var dataTable = new DataTable();
+                        adapter.Fill(dataTable);
 
-                        using (var adapter = new SqlDataAdapter(command))
-                        {
-                            var dataTable = new DataTable();
-                            adapter.Fill(dataTable);
-
-                            dataGridView4.DataSource = dataTable;
-                        }
+                        dataGridView4.DataSource = dataTable;
                     }
                 }
-
             }
+        }
+
+
+
+        private void btnCarTraOrder_Click(object sender, EventArgs e)
+        {
+            string query = "EXEC sp_GetCartaoTrabalhoOrdered";
+            SqlDataAdapter sda = new SqlDataAdapter(query, connectionString);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            dataGridView3.DataSource = dt;
         }
     }
 }

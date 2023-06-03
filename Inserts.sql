@@ -22,11 +22,11 @@ INSERT INTO Funcionario VALUES (3, 'James Brown', 5500.00, 'M', '1122334455', '7
 INSERT INTO Funcionario VALUES (4, 'Emma Stone', 6500.00, 'F', '6677889900', '321 St, City, State', '1983-01-01', 'emma@example.com', '2019-07-01', 'Engenheiro');
 INSERT INTO Funcionario VALUES (5, 'William Turner', 6200.00, 'M', '2244668800', '654 St, City, State', '1981-01-01', 'william@example.com', '2020-06-01', 'Motorista');
 
-INSERT INTO CartaoTrabalho VALUES (1, '2023-01-01', '2022-01-01', 'Active employee', 'A', 1);
-INSERT INTO CartaoTrabalho VALUES (2, '2024-01-01', '2023-01-01', 'Active employee', 'A', 2);
-INSERT INTO CartaoTrabalho VALUES (3, '2023-06-01', '2022-06-01', 'Active employee', 'A', 3);
-INSERT INTO CartaoTrabalho VALUES (4, '2023-07-01', '2022-07-01', 'Active employee', 'A', 4);
-INSERT INTO CartaoTrabalho VALUES (5, '2024-06-01', '2023-06-01', 'Active employee', 'A', 5);
+INSERT INTO CartaoTrabalho VALUES (1, '2023-01-01', '2022-01-01', 1);
+INSERT INTO CartaoTrabalho VALUES (2, '2024-01-01', '2023-01-01', 2);
+INSERT INTO CartaoTrabalho VALUES (3, '2023-06-01', '2022-06-01', 3);
+INSERT INTO CartaoTrabalho VALUES (4, '2023-07-01', '2022-07-01', 4);
+INSERT INTO CartaoTrabalho VALUES (5, '2024-06-01', '2023-06-01', 5);
 
 INSERT INTO Departamento VALUES (1, 'Engineering', 50000.00, 1, 'Engineering', 1.2, 0.5, 10.0);
 INSERT INTO Departamento VALUES (2, 'Operations', 60000.00, 3, 'Operations', 1.5, 0.6, 12.0);

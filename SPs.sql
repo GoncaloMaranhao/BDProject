@@ -11,6 +11,9 @@ DROP PROCEDURE GetFuncionariosOrderedByAge;
 DROP PROCEDURE GetFuncionariosOrderedByDataNascimento;
 DROP PROCEDURE GetFuncionariosOrderedByDataInicioTrabalho;
 DROP PROCEDURE GenerateCartaoTrabalho;
+DROP PROCEDURE AssociateCartaoToFuncionario;
+DROP PROCEDURE sp_GetCartaoTrabalhoOrdered;
+DROP PROCEDURE SearchCartaoTrabalho;
 
 go
 
@@ -128,7 +131,7 @@ BEGIN
         FROM Funcionario) AS FuncionarioWithExperience
 END;
 go
---------------------------------------Search------------------------------------
+-- Search Funcionario
 go
 CREATE PROCEDURE SearchFuncionario
     @Search VARCHAR(256) = NULL
@@ -281,9 +284,8 @@ go
 
 --------------------------------------CartaoTrabalho-----------------------------
 
---Produce CartaoTrabalho and associate it with a Funcionario
+--Produce CartaoTrabalho
 CREATE PROCEDURE GenerateCartaoTrabalho
-    @Observacoes VARCHAR(64)
 AS
 BEGIN
     DECLARE @ID_CartaoTrabalho INT;
@@ -297,8 +299,8 @@ BEGIN
 
     BEGIN TRY
         BEGIN TRANSACTION;
-            INSERT INTO CartaoTrabalho(ID_CartaoTrabalho, Data_Validade, Data_Emissao, Observacoes)
-            VALUES(@ID_CartaoTrabalho, @Data_Validade, @Data_Emissao, @Observacoes);
+            INSERT INTO CartaoTrabalho(ID_CartaoTrabalho, Data_Validade, Data_Emissao)
+            VALUES(@ID_CartaoTrabalho, @Data_Validade, @Data_Emissao);
         COMMIT;
     END TRY
     BEGIN CATCH
@@ -311,19 +313,59 @@ BEGIN
 END;
 go
 
+-- Associate it to a Funcionario
+CREATE PROCEDURE AssociateCartaoToFuncionario
+    @ID_CartaoTrabalho INT,
+    @ID_Funcionario INT
+AS
+BEGIN
+    BEGIN TRY
+        BEGIN TRANSACTION;
+            -- Set any active card of the Funcionario to inactive
+            UPDATE CartaoTrabalho
+            SET ID_Funcionario = NULL
+            WHERE ID_Funcionario = @ID_Funcionario AND dbo.fn_GetEstado(Data_Validade) = 'A';
+            
+            UPDATE CartaoTrabalho
+            SET ID_Funcionario = @ID_Funcionario
+            WHERE ID_CartaoTrabalho = @ID_CartaoTrabalho;
+            
+        COMMIT;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK;
+        DECLARE @ErrMsg nvarchar(4000), @ErrSeverity INT;
+        SELECT @ErrMsg = ERROR_MESSAGE(),
+               @ErrSeverity = ERROR_SEVERITY();
+        RAISERROR(@ErrMsg, @ErrSeverity, 1);
+    END CATCH;
+END;
+go
 
+-- Order by ID
+CREATE PROCEDURE sp_GetCartaoTrabalhoOrdered
+AS
+BEGIN
+    SELECT * FROM vw_CartaoTrabalho ORDER BY ID_Funcionario ASC;
+END
+go
 
---EXEC AddFuncionario 
---    @ID_Funcionario = 6, 
---    @Nome = 'Sara', 
---    @Salario = 5000.00, 
---    @Sexo = 'M', 
---    @Telemovel = '123-456-7890', 
---    @Morada = '123 Main St', 
---    @Data_nascimento = '1985-01-01', 
---    @Email = 'johndoe@gmail.com', 
---    @Data_inicio_trabalho = '2023-05-30', 
---    @Type = 'Engenheiro'
+--Search Cartao
+CREATE PROCEDURE SearchCartaoTrabalho
+    @SearchTerm VARCHAR(50)
+AS
+BEGIN
+    IF ISNUMERIC(@SearchTerm) = 1
+        SELECT ct.ID_Funcionario, f.Nome as Funcionario, ct.ID_CartaoTrabalho, dbo.fn_GetEstado(ct.Data_Validade) as Estado, ct.Data_Validade, ct.Data_Emissao
+        FROM CartaoTrabalho ct
+        LEFT JOIN Funcionario f ON f.ID_Funcionario = ct.ID_Funcionario
+        WHERE ct.ID_Funcionario = CAST(@SearchTerm AS INT);
+        
+    ELSE
+        SELECT ct.ID_Funcionario, f.Nome as Funcionario, ct.ID_CartaoTrabalho, dbo.fn_GetEstado(ct.Data_Validade) as Estado, ct.Data_Validade, ct.Data_Emissao
+        FROM CartaoTrabalho ct
+        LEFT JOIN Funcionario f ON f.ID_Funcionario = ct.ID_Funcionario
+        WHERE dbo.fn_GetEstado(ct.Data_Validade) = @SearchTerm;
+END;
 
----- Removing a Funcionario
---EXEC RemoveFuncionario @ID_Funcionario = 3
+go
