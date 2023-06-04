@@ -503,32 +503,67 @@ CREATE PROCEDURE InsertAtribuicaoCamiao
     @Data_Fim DATE
 AS
 BEGIN
-    DECLARE @Atribuicao_ID INT;
-    SET @Atribuicao_ID = dbo.GetNextAtribuicaoID();
+    BEGIN TRANSACTION
+    BEGIN TRY
+        DECLARE @Atribuicao_ID INT;
+        DECLARE @Estado CHAR(1);
 
-    INSERT INTO AtribuicaoCamiao (
-        Atribuicao_ID, 
-        ID_Camiao, 
-        ID_Encomenda, 
-        ID_Motorista, 
-        Data_Inicio, 
-        Distancia_Percorrida, 
-        Peso_Transportado, 
-        Data_Fim, 
-        Estado
-    )
-    VALUES (
-        @Atribuicao_ID, 
-        @ID_Camiao, 
-        @ID_Encomenda, 
-        @ID_Motorista, 
-        @Data_Inicio, 
-        @Distancia_Percorrida, 
-        @Peso_Transportado, 
-        @Data_Fim,
-		--default Estado
-        'Y'
-    )
+        -- check if the encomenda has already been delivered
+        IF EXISTS (SELECT 1 FROM Encomenda WHERE ID_Encomenda = @ID_Encomenda AND Estado = 'Y')
+        BEGIN
+            RAISERROR ('This order has already been delivered.', 16, 1);
+            RETURN;
+        END
+
+        -- check if the motorista is already assigned to the camiao at the same time
+        IF EXISTS (SELECT 1 FROM AtribuicaoCamiao 
+                   WHERE ID_Motorista = @ID_Motorista 
+                   AND ID_Camiao = @ID_Camiao 
+                   AND Data_Inicio <= @Data_Inicio 
+                   AND Data_Fim >= @Data_Inicio)
+        BEGIN
+            RAISERROR ('The driver is already assigned to this truck at the same time.', 16, 1);
+            RETURN;
+        END
+
+        -- check the end date and set the Estado accordingly
+        IF @Data_Fim < GETDATE()
+            SET @Estado = 'N';
+        ELSE
+            SET @Estado = 'Y';
+
+        SET @Atribuicao_ID = dbo.GetNextAtribuicaoID();
+
+        INSERT INTO AtribuicaoCamiao (
+            Atribuicao_ID, 
+            ID_Camiao, 
+            ID_Encomenda, 
+            ID_Motorista, 
+            Data_Inicio, 
+            Distancia_Percorrida, 
+            Peso_Transportado, 
+            Data_Fim, 
+            Estado
+        )
+        VALUES (
+            @Atribuicao_ID, 
+            @ID_Camiao, 
+            @ID_Encomenda, 
+            @ID_Motorista, 
+            @Data_Inicio, 
+            @Distancia_Percorrida, 
+            @Peso_Transportado, 
+            @Data_Fim, 
+            @Estado
+        )
+
+        COMMIT TRANSACTION
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRANSACTION
+        DECLARE @ErrMsg nvarchar(4000), @ErrSeverity int;
+        SELECT @ErrMsg = ERROR_MESSAGE(), @ErrSeverity = ERROR_SEVERITY();
+        RAISERROR(@ErrMsg, @ErrSeverity, 1);
+    END CATCH
 END;
-
 
