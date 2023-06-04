@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BDProject
@@ -20,50 +14,29 @@ namespace BDProject
             textBoxPassword.PasswordChar = '*';
         }
 
-        private void Form3_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        public void HashAndStorePassword()
-        {
-            string password = "adminBD";  
-            byte[] salt = GetSalt();
-            string hashedPassword = HashPassword(password, salt);
-            System.Diagnostics.Debug.WriteLine(hashedPassword);
-        }
-
-
         private string HashPassword(string password, byte[] salt)
         {
             using (Rfc2898DeriveBytes pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000))
             {
                 byte[] hash = pbkdf2.GetBytes(20);
-                byte[] hashBytes = new byte[36];
-                Array.Copy(salt, 0, hashBytes, 0, 16);
-                Array.Copy(hash, 0, hashBytes, 16, 20);
-                return Convert.ToBase64String(hashBytes);
+                return Convert.ToBase64String(hash);
             }
         }
 
-        private byte[] GetSalt()
+        private void Form3_Load(object sender, EventArgs e)
         {
-            byte[] salt = new byte[16];
-            RandomNumberGenerator.Fill(salt);
-            return salt;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
         }
 
 
-        (string, byte[]) GetHashedPasswordFromDB(string username)
+        (string, byte[]) GetHashedPasswordAndSaltFromDB(string username)
         {
             string connectionString = @"Data Source=DESKTOP-814R5P6;Initial Catalog=MyLocalDB;Integrated Security=True";
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -78,9 +51,10 @@ namespace BDProject
                     {
                         if (reader.Read())
                         {
-                            string hashedPassword = reader["HashedPassword"] as string;
-                            byte[] salt = (byte[])reader["Salt"];
-                            return (hashedPassword, salt);
+                            string storedHashedPassword = reader["HashedPassword"] as string;
+                            byte[] storedSalt = (byte[])reader["Salt"]; 
+
+                            return (storedHashedPassword, storedSalt);
                         }
                         else
                         {
@@ -91,17 +65,16 @@ namespace BDProject
             }
         }
 
-
-
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             string username = textBoxUsername.Text;
             string password = textBoxPassword.Text;
 
-            (string hashedPasswordFromDB, byte[] salt) = GetHashedPasswordFromDB(username);
-            string hashedPassword = HashPassword(password, salt);
+            (string storedHashedPassword, byte[] storedSalt) = GetHashedPasswordAndSaltFromDB(username);
 
-            if (hashedPassword == hashedPasswordFromDB)
+            string inputHashedPassword = HashPassword(password, storedSalt);
+
+            if (inputHashedPassword == storedHashedPassword)
             {
                 this.Hide();
                 mainForm funcionarioForm = new mainForm();
@@ -112,9 +85,5 @@ namespace BDProject
                 MessageBox.Show("Invalid username or password", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
     }
 }
-
-

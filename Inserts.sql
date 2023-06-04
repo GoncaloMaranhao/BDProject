@@ -96,4 +96,8 @@ INSERT INTO AtribuicaoCamiao VALUES (3, 3, 3, 3, '2022-08-01', 20, 24, '2023-04-
 INSERT INTO AtribuicaoCamiao VALUES (4, 4, 4, 4, '2022-09-01', 27, 34, '2023-02-01', 'Y');
 INSERT INTO AtribuicaoCamiao VALUES (5, 5, 5, 5, '2022-10-01', 35, 38, '2023-01-01', 'Y');
 
-INSERT INTO UserLogin (ID_User, Username, HashedPassword) VALUES (1, 'adminBD', 'hashedPassword', '481248');
+INSERT INTO UserLogin (ID_User, Username, HashedPassword, Salt)
+VALUES (1, 'your_username', 'aQB9i1YC9b+adOU8Di2HH25NhNA=', CAST('' AS xml).value('xs:base64Binary("D0Z6PLfiv64I9apgfosqEA==")', 'VARBINARY(16)'))
+--username: your_username ------
+--password: your_password ----
+
