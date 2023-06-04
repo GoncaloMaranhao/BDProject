@@ -34,7 +34,6 @@ FROM
     Funcionario
 go
 
-
 -- To see active or inactive cartao trabalho
 CREATE VIEW vw_CartaoTrabalho
 AS

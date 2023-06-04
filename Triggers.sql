@@ -69,12 +69,11 @@ AS
 BEGIN
     BEGIN TRANSACTION;
     BEGIN TRY
-        -- remove the department as a manager
+
         UPDATE Departamento
         SET ID_Gerente = NULL
         WHERE ID_Gerente IN (SELECT ID_Departamento FROM deleted);
 
-        -- then delete the department
         DELETE FROM Departamento
         WHERE ID_Departamento IN (SELECT ID_Departamento FROM deleted);
 
@@ -94,12 +93,10 @@ AS
 BEGIN
     BEGIN TRANSACTION;
     BEGIN TRY
-        -- remove the engineer as a manager
         UPDATE Departamento
         SET ID_Gerente = NULL
         WHERE ID_Gerente IN (SELECT ID_Engenheiro FROM deleted);
 
-        -- then delete the engineer
         DELETE FROM Engenheiro
         WHERE ID_Engenheiro IN (SELECT ID_Engenheiro FROM deleted);
 

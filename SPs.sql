@@ -21,7 +21,7 @@ DROP PROCEDURE RemoveDepartamento;
 DROP PROCEDURE AddEngenheiroManager;
 DROP PROCEDURE RemoveEngenheiroManager;
 DROP PROCEDURE SearchEngenheiro;
---DROP PROCEDURE EngenheirosNotManagers;
+DROP PROCEDURE GetHashedPassword;
 go
 
 
@@ -479,4 +479,15 @@ END
 go
 
 
---------------------------------------NextOne-----------------------------
+--------------------------------------HashedPassword-----------------------------
+CREATE PROCEDURE GetHashedPassword
+    @Username VARCHAR(256)
+AS
+BEGIN
+    SELECT HashedPassword, Salt
+    FROM UserLogin
+    WHERE Username = @Username
+END
+go
+
+-------------------------------------NEXT------------------------------------

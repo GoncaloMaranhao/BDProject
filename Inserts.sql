@@ -39,7 +39,7 @@ INSERT INTO Engenheiro VALUES (2, 2, 'Electrical Engineering');
 INSERT INTO Engenheiro VALUES (3, 3, 'Mechanical Engineering');
 INSERT INTO Engenheiro VALUES (4, 4, 'Chemical Engineering');
 INSERT INTO Engenheiro VALUES (5, 5, 'Software Engineering');
-INSERT INTO Engenheiro VALUES (6, 6, 'Software Engineering');
+INSERT INTO Engenheiro VALUES (6, 6, 'Softw Engineering');
 
 
 INSERT INTO Motorista VALUES (1, 1, '2023-01-01', 'Y');
@@ -95,10 +95,3 @@ INSERT INTO AtribuicaoCamiao VALUES (2, 2, 2, 2, '2022-07-01', 13, 19, '2023-05-
 INSERT INTO AtribuicaoCamiao VALUES (3, 3, 3, 3, '2022-08-01', 20, 24, '2023-04-01', 'Y');
 INSERT INTO AtribuicaoCamiao VALUES (4, 4, 4, 4, '2022-09-01', 27, 34, '2023-02-01', 'Y');
 INSERT INTO AtribuicaoCamiao VALUES (5, 5, 5, 5, '2022-10-01', 35, 38, '2023-01-01', 'Y');
-
-INSERT INTO UserLogin (ID_User, Username, HashedPassword, Funcao, ID_Funcionario) 
-VALUES (1, 'admin1', 'hashedpassword1', 'Admin', 1),
- (2, 'eng1', 'hashedpassword2', 'Engenheiro', 4),
- (3, 'mot1', 'hashedpassword3', 'Motorista', 2),
- (4, 'opr1', 'hashedpassword4', 'Operario', 3),
- (5, 'admin2', 'hashedpassword5', 'Admin', 5);

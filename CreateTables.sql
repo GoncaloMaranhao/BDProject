@@ -154,7 +154,8 @@ CREATE TABLE UserLogin (
     ID_User INT PRIMARY KEY,
     Username VARCHAR(256) UNIQUE NOT NULL,
     HashedPassword VARCHAR(256) NOT NULL,
-    Funcao VARCHAR(256) NOT NULL CHECK (Funcao IN ('Admin', 'Engenheiro', 'Motorista', 'Operario')),
+    Funcao VARCHAR(256) NOT NULL CHECK (Funcao IN ('Admin')),
     ID_Funcionario INT UNIQUE,
+    Salt VARBINARY(16),
     FOREIGN KEY (ID_Funcionario) REFERENCES Funcionario(ID_Funcionario)
 );
