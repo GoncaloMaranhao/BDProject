@@ -594,7 +594,6 @@ BEGIN
         RAISERROR(@ErrMsg, @ErrSeverity, 1);
     END CATCH
 END;
-
 go
 
 CREATE PROCEDURE SearchCamiaoByMatricula
@@ -607,4 +606,5 @@ BEGIN
 END;
 go
 
-------------------------------------------------------------------------
+-------------------------------------ProdutoMDF------------------------------------
+

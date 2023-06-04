@@ -1,6 +1,8 @@
 use MyLocalDB
 go
 
+EXEC SearchCamiaoByMatricula @Matricula = 'AAA123'
+
 DROP TABLE IF EXISTS AtribuicaoCamiao;
 DROP TABLE IF EXISTS Operario;
 DROP TABLE IF EXISTS Cliente;
@@ -19,7 +21,7 @@ DROP TABLE IF EXISTS Funcionario;
 CREATE TABLE Funcionario (
     ID_Funcionario INT PRIMARY KEY,
     Nome VARCHAR(256) NOT NULL,
-    Salario DECIMAL(10, 2) CHECK (Salario>0) NOT NULL,
+    Salario DECIMAL(10, 2) CHECK (Salario>740) NOT NULL,
     Sexo CHAR(1) CHECK (Sexo IN ('M', 'F')) NOT NULL,
     Telemovel VARCHAR(32),
 	Morada VARCHAR(256),
@@ -66,7 +68,7 @@ CREATE TABLE Motorista (
 
 CREATE TABLE Camiao (
     ID_Camiao INT PRIMARY KEY,
-    Matricula VARCHAR(256),
+    Matricula VARCHAR(256) UNIQUE,
 	Ano_Fabricado INT,
 	Velocidade_maxima INT CHECK(Velocidade_maxima >= 0),
 	Carga_maxima INT CHECK(Carga_maxima >= 0),
@@ -154,8 +156,5 @@ CREATE TABLE UserLogin (
     ID_User INT PRIMARY KEY,
     Username VARCHAR(256) UNIQUE NOT NULL,
     HashedPassword VARCHAR(256) NOT NULL,
-    Funcao VARCHAR(256) NOT NULL CHECK (Funcao IN ('Admin')),
-    ID_Funcionario INT UNIQUE,
     Salt VARBINARY(16),
-    FOREIGN KEY (ID_Funcionario) REFERENCES Funcionario(ID_Funcionario)
 );

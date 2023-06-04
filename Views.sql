@@ -56,10 +56,11 @@ CREATE VIEW DepartmentView AS
 SELECT * FROM Departamento
 go
 
+-- refresh dataGrid in interface
 CREATE VIEW EngenheiroView AS
 SELECT * FROM Engenheiro
 go
-
+-- view of dataGrid regarding engenheiros
 CREATE VIEW ViewEngenheiros AS
 SELECT E.ID_Engenheiro, E.ID_Funcionario, F.Nome, D.Nome as DepartamentoNome
 FROM Engenheiro E
@@ -67,6 +68,7 @@ JOIN Funcionario F ON E.ID_Funcionario = F.ID_Funcionario
 LEFT JOIN Departamento D ON F.ID_Funcionario = D.ID_Gerente;
 go
 
+-- show engenheiros that are not managers in dataGrid
 CREATE VIEW ViewEngenheirosNotManagers AS
 SELECT E.ID_Engenheiro, E.ID_Funcionario, E.Curso, F.Nome, D.Nome as Nome_Departamento
 FROM Engenheiro E
