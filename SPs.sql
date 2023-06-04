@@ -308,13 +308,10 @@ BEGIN
     SELECT @ID_CartaoTrabalho = ISNULL(MAX(ID_CartaoTrabalho), 0) + 1 FROM CartaoTrabalho;
 
     BEGIN TRY
-        BEGIN TRANSACTION
-            INSERT INTO CartaoTrabalho(ID_CartaoTrabalho, Data_Validade, Data_Emissao)
-            VALUES(@ID_CartaoTrabalho, @Data_Validade, @Data_Emissao);
-        COMMIT;
+        INSERT INTO CartaoTrabalho(ID_CartaoTrabalho, Data_Validade, Data_Emissao)
+        VALUES(@ID_CartaoTrabalho, @Data_Validade, @Data_Emissao);
     END TRY
     BEGIN CATCH
-        ROLLBACK;
         DECLARE @ErrMsg nvarchar(4000), @ErrSeverity INT;
         SELECT @ErrMsg = ERROR_MESSAGE(),
                @ErrSeverity = ERROR_SEVERITY();
@@ -504,65 +501,57 @@ CREATE PROCEDURE InsertAtribuicaoCamiao
     @Data_Fim DATE
 AS
 BEGIN
-
     BEGIN TRY
-		BEGIN TRANSACTION
-			DECLARE @Atribuicao_ID INT;
-			DECLARE @Estado CHAR(1);
+        DECLARE @Atribuicao_ID INT;
+        DECLARE @Estado CHAR(1);
 
-			-- check if the encomenda has already been delivered
-			IF EXISTS (SELECT 1 FROM Encomenda WHERE ID_Encomenda = @ID_Encomenda AND Estado = 'Y')
-			BEGIN
+        IF EXISTS (SELECT 1 FROM Encomenda WHERE ID_Encomenda = @ID_Encomenda AND Estado = 'Y')
+        BEGIN
             RAISERROR ('This order has already been delivered.', 16, 1);
             RETURN;
-			END
+        END
 
-			-- check if the motorista is already assigned to the camiao at the same time
-			IF EXISTS (SELECT 1 FROM AtribuicaoCamiao 
-                   WHERE ID_Motorista = @ID_Motorista 
-                   AND ID_Camiao = @ID_Camiao 
-                   AND Data_Inicio <= @Data_Inicio 
-                   AND Data_Fim >= @Data_Inicio)
-			BEGIN
-				RAISERROR ('The driver is already assigned to this truck at the same time.', 16, 1);
-				RETURN;
-			END
+        IF EXISTS (SELECT 1 FROM AtribuicaoCamiao 
+               WHERE ID_Motorista = @ID_Motorista 
+               AND ID_Camiao = @ID_Camiao 
+               AND Data_Inicio <= @Data_Inicio 
+               AND Data_Fim >= @Data_Inicio)
+        BEGIN
+            RAISERROR ('The driver is already assigned to this truck at the same time.', 16, 1);
+            RETURN;
+        END
 
-			-- check the end date and set the Estado accordingly
-			IF @Data_Fim < GETDATE()
-				SET @Estado = 'N';
-			ELSE
-				SET @Estado = 'Y';
+        IF @Data_Fim < GETDATE()
+            SET @Estado = 'N';
+        ELSE
+            SET @Estado = 'Y';
 
-			SET @Atribuicao_ID = dbo.GetNextAtribuicaoID();
+        SET @Atribuicao_ID = dbo.GetNextAtribuicaoID();
 
-			INSERT INTO AtribuicaoCamiao (
-				Atribuicao_ID, 
-				ID_Camiao, 
-				ID_Encomenda, 
-				ID_Motorista, 
-				Data_Inicio, 
-				Distancia_Percorrida, 
-				Peso_Transportado, 
-				Data_Fim, 
-				Estado
-			)
-			VALUES (
-				@Atribuicao_ID, 
-				@ID_Camiao, 
-				@ID_Encomenda, 
-				@ID_Motorista, 
-				@Data_Inicio, 
-				@Distancia_Percorrida, 
-				@Peso_Transportado, 
-				@Data_Fim, 
-				@Estado
-			)
-
-		COMMIT TRANSACTION
-		END TRY
-		BEGIN CATCH
-		ROLLBACK TRANSACTION
+        INSERT INTO AtribuicaoCamiao (
+            Atribuicao_ID, 
+            ID_Camiao, 
+            ID_Encomenda, 
+            ID_Motorista, 
+            Data_Inicio, 
+            Distancia_Percorrida, 
+            Peso_Transportado, 
+            Data_Fim, 
+            Estado
+        )
+        VALUES (
+            @Atribuicao_ID, 
+            @ID_Camiao, 
+            @ID_Encomenda, 
+            @ID_Motorista, 
+            @Data_Inicio, 
+            @Distancia_Percorrida, 
+            @Peso_Transportado, 
+            @Data_Fim, 
+            @Estado
+        )
+    END TRY
+    BEGIN CATCH
         DECLARE @ErrMsg nvarchar(4000), @ErrSeverity int;
         SELECT @ErrMsg = ERROR_MESSAGE(), @ErrSeverity = ERROR_SEVERITY();
         RAISERROR(@ErrMsg, @ErrSeverity, 1);
@@ -582,10 +571,15 @@ BEGIN
                 RETURN;
             END
 
-            UPDATE Encomenda
-            SET Estado = 'N'
-            WHERE ID_Encomenda = (SELECT ID_Encomenda FROM AtribuicaoCamiao WHERE Atribuicao_ID = @Atribuicao_ID);
-            
+            DECLARE @idEncomenda INT;
+            SELECT @idEncomenda = ID_Encomenda FROM AtribuicaoCamiao WHERE Atribuicao_ID = @Atribuicao_ID;
+            IF (SELECT Data_Prevista_Entrega FROM Encomenda WHERE ID_Encomenda = @idEncomenda) > GETDATE()
+            BEGIN
+                UPDATE Encomenda
+                SET Estado = 'N'
+                WHERE ID_Encomenda = @idEncomenda;
+            END
+
             DELETE FROM AtribuicaoCamiao
             WHERE Atribuicao_ID = @Atribuicao_ID;
 
@@ -600,6 +594,7 @@ BEGIN
         RAISERROR(@ErrMsg, @ErrSeverity, 1);
     END CATCH
 END;
+
 go
 
 CREATE PROCEDURE SearchCamiaoByMatricula
