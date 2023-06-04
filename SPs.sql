@@ -22,6 +22,8 @@ DROP PROCEDURE AddEngenheiroManager;
 DROP PROCEDURE RemoveEngenheiroManager;
 DROP PROCEDURE SearchEngenheiro;
 DROP PROCEDURE GetHashedPassword;
+DROP PROCEDURE InsertAtribuicaoCamiao;
+
 go
 
 
@@ -490,4 +492,43 @@ BEGIN
 END
 go
 
--------------------------------------NEXT------------------------------------
+-------------------------------------AtribuicaoCamiao------------------------------------
+CREATE PROCEDURE InsertAtribuicaoCamiao
+    @ID_Camiao INT,
+    @ID_Encomenda INT,
+    @ID_Motorista INT,
+    @Data_Inicio DATE,
+    @Distancia_Percorrida INT,
+    @Peso_Transportado INT,
+    @Data_Fim DATE
+AS
+BEGIN
+    DECLARE @Atribuicao_ID INT;
+    SET @Atribuicao_ID = dbo.GetNextAtribuicaoID();
+
+    INSERT INTO AtribuicaoCamiao (
+        Atribuicao_ID, 
+        ID_Camiao, 
+        ID_Encomenda, 
+        ID_Motorista, 
+        Data_Inicio, 
+        Distancia_Percorrida, 
+        Peso_Transportado, 
+        Data_Fim, 
+        Estado
+    )
+    VALUES (
+        @Atribuicao_ID, 
+        @ID_Camiao, 
+        @ID_Encomenda, 
+        @ID_Motorista, 
+        @Data_Inicio, 
+        @Distancia_Percorrida, 
+        @Peso_Transportado, 
+        @Data_Fim,
+		--default Estado
+        'Y'
+    )
+END;
+
+

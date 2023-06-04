@@ -53,6 +53,8 @@ INSERT INTO Camiao VALUES (2, 'BBB123', 2011, 85, 2100, 60000, 16000.00);
 INSERT INTO Camiao VALUES (3, 'CCC123', 2012, 90, 2200, 70000, 17000.00);
 INSERT INTO Camiao VALUES (4, 'DDD123', 2013, 95, 2300, 80000, 18000.00);
 INSERT INTO Camiao VALUES (5, 'EEE123', 2014, 100, 2400, 90000, 19000.00);
+INSERT INTO Camiao VALUES (6, '124asd', 2014, 100, 2400, 90000, 19000.00);
+
 
 INSERT INTO FornecedorMadeira VALUES (1, 'Supplier 1', '123 St, City, State', '1234567890', '2020-01-01', 'Certification 1');
 INSERT INTO FornecedorMadeira VALUES (2, 'Supplier 2', '456 St, City, State', '0987654321', '2019-01-01', 'Certification 2');
@@ -95,3 +97,4 @@ INSERT INTO AtribuicaoCamiao VALUES (2, 2, 2, 2, '2022-07-01', 13, 19, '2023-05-
 INSERT INTO AtribuicaoCamiao VALUES (3, 3, 3, 3, '2022-08-01', 20, 24, '2023-04-01', 'Y');
 INSERT INTO AtribuicaoCamiao VALUES (4, 4, 4, 4, '2022-09-01', 27, 34, '2023-02-01', 'Y');
 INSERT INTO AtribuicaoCamiao VALUES (5, 5, 5, 5, '2022-10-01', 35, 38, '2023-01-01', 'Y');
+INSERT INTO AtribuicaoCamiao VALUES (10, 10, 10, 10, '2018-10-01', 35, 38, '2024-01-01', 'N');

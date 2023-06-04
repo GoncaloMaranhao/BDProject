@@ -8,6 +8,7 @@ DROP VIEW EngenheiroView;
 DROP VIEW ViewEngenheiros;
 DROP VIEW ViewEngenheirosNotManagers;
 DROP VIEW FuncionarioView;
+DROP VIEW ActiveAssignments;
 
 go
 CREATE VIEW FuncionarioWithAge AS
@@ -47,6 +48,7 @@ FROM CartaoTrabalho ct
 LEFT JOIN Funcionario f ON f.ID_Funcionario = ct.ID_Funcionario;
 go
 
+--To refresh dataGrid in interface
 CREATE VIEW DepartmentView AS
 SELECT * FROM Departamento
 go
@@ -73,3 +75,12 @@ go
 CREATE VIEW FuncionarioView AS
 SELECT * FROM Funcionario
 go
+
+
+CREATE VIEW ActiveAssignments AS
+SELECT ac.Atribuicao_ID, f.Nome AS DriverName, c.Matricula AS TruckNumber, e.ID_Encomenda AS OrderID
+FROM AtribuicaoCamiao ac
+JOIN Funcionario f ON ac.ID_Motorista = f.ID_Funcionario
+JOIN Camiao c ON ac.ID_Camiao = c.ID_Camiao
+JOIN Encomenda e ON ac.ID_Encomenda = e.ID_Encomenda
+WHERE ac.Estado = 'Y';
