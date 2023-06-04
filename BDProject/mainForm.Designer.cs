@@ -133,6 +133,8 @@
             this.btnRemoveDep = new System.Windows.Forms.Button();
             this.btnAddDep = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox16 = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.dataGridView9 = new System.Windows.Forms.DataGridView();
@@ -1268,6 +1270,8 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.label15);
+            this.tabPage4.Controls.Add(this.textBox16);
             this.tabPage4.Controls.Add(this.label19);
             this.tabPage4.Controls.Add(this.textBox15);
             this.tabPage4.Controls.Add(this.dataGridView9);
@@ -1297,6 +1301,24 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
+            this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(922, 493);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(141, 25);
+            this.label15.TabIndex = 57;
+            this.label15.Text = "Search Matricula";
+            // 
+            // textBox16
+            // 
+            this.textBox16.Location = new System.Drawing.Point(922, 535);
+            this.textBox16.Name = "textBox16";
+            this.textBox16.Size = new System.Drawing.Size(150, 31);
+            this.textBox16.TabIndex = 56;
+            this.textBox16.TextChanged += new System.EventHandler(this.textBox16_TextChanged);
             // 
             // label19
             // 
@@ -1317,11 +1339,11 @@
             // dataGridView9
             // 
             this.dataGridView9.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView9.Location = new System.Drawing.Point(1758, 0);
+            this.dataGridView9.Location = new System.Drawing.Point(1109, 5);
             this.dataGridView9.Name = "dataGridView9";
             this.dataGridView9.RowHeadersWidth = 62;
             this.dataGridView9.RowTemplate.Height = 33;
-            this.dataGridView9.Size = new System.Drawing.Size(377, 1045);
+            this.dataGridView9.Size = new System.Drawing.Size(1021, 687);
             this.dataGridView9.TabIndex = 52;
             // 
             // label18
@@ -1410,11 +1432,11 @@
             // dataGridView8
             // 
             this.dataGridView8.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView8.Location = new System.Drawing.Point(3, 563);
+            this.dataGridView8.Location = new System.Drawing.Point(3, 693);
             this.dataGridView8.Name = "dataGridView8";
             this.dataGridView8.RowHeadersWidth = 62;
             this.dataGridView8.RowTemplate.Height = 33;
-            this.dataGridView8.Size = new System.Drawing.Size(1749, 475);
+            this.dataGridView8.Size = new System.Drawing.Size(2129, 345);
             this.dataGridView8.TabIndex = 39;
             this.dataGridView8.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView8_CellContentClick);
             // 
@@ -1781,5 +1803,7 @@
         private DataGridView dataGridView9;
         private Label label19;
         private TextBox textBox15;
+        private Label label15;
+        private TextBox textBox16;
     }
 }

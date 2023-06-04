@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing.Imaging;
 using System.Reflection.Emit;
 using System.Windows.Forms;
@@ -129,6 +130,16 @@ namespace BDProject
                 da.Fill(dt);
 
                 dataGridView8.DataSource = dt;
+            }
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM View_Atribuicao_Info", con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                dataGridView9.DataSource = dt;
             }
 
             txtID_FuncionarioRemove.Visible = false;
@@ -388,6 +399,8 @@ namespace BDProject
                 }
             }
         }
+
+
 
 
 
@@ -1187,6 +1200,42 @@ namespace BDProject
             label18.Visible = false;
             button12.Visible = false;
             RefreshAtribuicaoCamiaoData();
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox16_TextChanged(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Textbox content changed.");
+            Debug.WriteLine($"Textbox content: {textBox16.Text}");
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SearchCamiaoByMatricula", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@Matricula", SqlDbType.VarChar, 256));
+                    cmd.Parameters["@Matricula"].Value = textBox16.Text;
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    Debug.WriteLine($"Number of rows: {dt.Rows.Count}");
+
+                    dataGridView9.DataSource = dt;
+                }
+            }
         }
     }
 
