@@ -2,8 +2,11 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing.Imaging;
+using System.Reflection.Emit;
 using System.Windows.Forms;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 
 
 namespace BDProject
@@ -118,6 +121,16 @@ namespace BDProject
                 dataGridView7.DataSource = dt;
             }
 
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM View_AtribuicaoCamiao", con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                dataGridView8.DataSource = dt;
+            }
+
             txtID_FuncionarioRemove.Visible = false;
             labelIDRemove.Visible = false;
             btnSubmitRemove.Visible = false;
@@ -188,6 +201,25 @@ namespace BDProject
             ID_Department.Visible = false;
             textBox8.Visible = false;
             btnSubmitRemoveDep.Visible = false;
+
+            // Camiao btns
+            textBox10.Visible = false;
+            label12.Visible = false;
+            textBox11.Visible = false;
+            label13.Visible = false;
+            label14.Visible = false;
+            textBox12.Visible = false;
+            label16.Visible = false;
+            dateTimePicker1.Visible = false;
+            label17.Visible = false;
+            dateTimePicker2.Visible = false;
+            button11.Visible = false;
+            label18.Visible = false;
+            textBox14.Visible = false;
+            button12.Visible = false;
+            label19.Visible = false;
+            textBox15.Visible = false;
+
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -339,6 +371,25 @@ namespace BDProject
             }
         }
 
+        private void RefreshAtribuicaoCamiaoData()
+        {
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                using (var command = new SqlCommand("SELECT * FROM View_AtribuicaoCamiao ", conn))
+                using (var adapter = new SqlDataAdapter(command))
+                {
+                    var dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                    dataGridView8.DataSource = dataTable;
+                    dataGridView8.Refresh();
+                }
+            }
+        }
+
+
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
@@ -365,7 +416,6 @@ namespace BDProject
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    //cmd.Parameters.Add("@ID_Funcionario", SqlDbType.Int).Value = txtID_Funcionario.Text;
                     cmd.Parameters.Add("@Nome", SqlDbType.VarChar).Value = txtNome.Text;
                     cmd.Parameters.Add("@Salario", SqlDbType.Decimal).Value = txtSalario.Text;
                     cmd.Parameters.Add("@Sexo", SqlDbType.Char).Value = cmbSexo.SelectedItem.ToString();
@@ -1020,7 +1070,127 @@ namespace BDProject
         {
 
         }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void button9_Click_2(object sender, EventArgs e)
+        {
+            textBox10.Visible = true;
+            label12.Visible = true;
+            textBox11.Visible = true;
+            label13.Visible = true;
+            label14.Visible = true;
+            textBox12.Visible = true;
+            label16.Visible = true;
+            dateTimePicker1.Visible = true;
+            label17.Visible = true;
+            dateTimePicker2.Visible = true;
+            button11.Visible = true;
+        }
+
+        private void button10_Click_1(object sender, EventArgs e)
+        {
+            label18.Visible = true;
+            textBox14.Visible = true;
+            button12.Visible = true;
+        }
+
+        private void dataGridView8_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("InsertAtribuicaoCamiao", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@ID_Camiao", SqlDbType.Int));
+                    cmd.Parameters["@ID_Camiao"].Value = int.Parse(textBox10.Text);
+
+                    cmd.Parameters.Add(new SqlParameter("@ID_Encomenda", SqlDbType.Int));
+                    cmd.Parameters["@ID_Encomenda"].Value = int.Parse(textBox11.Text);
+
+                    cmd.Parameters.Add(new SqlParameter("@ID_Motorista", SqlDbType.Int));
+                    cmd.Parameters["@ID_Motorista"].Value = int.Parse(textBox12.Text);
+
+                    cmd.Parameters.Add(new SqlParameter("@Peso_Transportado", SqlDbType.Int));
+                    cmd.Parameters["@Peso_Transportado"].Value = int.Parse(textBox15.Text);
+
+                    cmd.Parameters.Add(new SqlParameter("@Data_Inicio", SqlDbType.Date));
+                    cmd.Parameters["@Data_Inicio"].Value = dateTimePicker1.Value.Date;
+
+                    cmd.Parameters.Add(new SqlParameter("@Data_Fim", SqlDbType.Date));
+                    cmd.Parameters["@Data_Fim"].Value = dateTimePicker2.Value.Date;
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("New AtribuicaoCamiao Added Successfully!");
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+            }
+            textBox10.Visible = false;
+            label12.Visible = false;
+            textBox11.Visible = false;
+            label13.Visible = false;
+            label14.Visible = false;
+            textBox12.Visible = false;
+            label16.Visible = false;
+            dateTimePicker1.Visible = false;
+            label17.Visible = false;
+            dateTimePicker2.Visible = false;
+            button11.Visible = false;
+            label18.Visible = false;
+            label19.Visible = false;
+            textBox15.Visible = false;
+            RefreshAtribuicaoCamiaoData();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("DeleteAtribuicaoCamiao", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@Atribuicao_ID", SqlDbType.Int));
+                    cmd.Parameters["@Atribuicao_ID"].Value = int.Parse(textBox14.Text);
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+            }
+            textBox14.Visible = false;
+            label18.Visible = false;
+            button12.Visible = false;
+            RefreshAtribuicaoCamiaoData();
+        }
     }
+
 }
+
 
 
