@@ -28,11 +28,11 @@ INSERT INTO CartaoTrabalho VALUES (3, '2023-06-01', '2022-06-01', 3);
 INSERT INTO CartaoTrabalho VALUES (4, '2023-07-01', '2022-07-01', 4);
 INSERT INTO CartaoTrabalho VALUES (5, '2024-06-01', '2023-06-01', 5);
 
-INSERT INTO Departamento VALUES (1, 'Engineering', 50000.00, 1, 'Engineering', 1.2, 0.5, 10.0);
-INSERT INTO Departamento VALUES (2, 'Operations', 60000.00, 3, 'Operations', 1.5, 0.6, 12.0);
-INSERT INTO Departamento VALUES (3, 'Logistics', 70000.00, 2, 'Logistics', 1.3, 0.7, 15.0);
-INSERT INTO Departamento VALUES (4, 'Quality Control', 80000.00, 4, 'Quality Control', 1.4, 0.8, 18.0);
-INSERT INTO Departamento VALUES (5, 'HR', 90000.00, 5, 'HR', 1.1, 0.9, 20.0);
+INSERT INTO Departamento VALUES (1, 'Engineering', 50000.00, 1, 1.2, 0.5, 10.0);
+INSERT INTO Departamento VALUES (2, 'Operations', 60000.00, 3,  1.5, 0.6, 12.0);
+INSERT INTO Departamento VALUES (3, 'Logistics', 70000.00, 2, 1.3, 0.7, 15.0);
+INSERT INTO Departamento VALUES (4, 'Quality Control', 80000.00, 4, 1.4, 0.8, 18.0);
+INSERT INTO Departamento VALUES (5, 'HR', 90000.00, 5, 1.1, 0.9, 20.0);
 
 INSERT INTO Engenheiro VALUES (1, 1, 'Civil Engineering');
 INSERT INTO Engenheiro VALUES (2, 2, 'Electrical Engineering');

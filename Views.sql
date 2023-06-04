@@ -5,6 +5,8 @@ DROP VIEW FuncionarioWithAge;
 DROP VIEW vw_CartaoTrabalho;
 DROP VIEW DepartmentView;
 DROP VIEW EngenheiroView;
+DROP VIEW ViewEngenheiros;
+--DROP VIEW ViewEngenheirosNotManagers;
 
 go
 CREATE VIEW FuncionarioWithAge AS
@@ -51,4 +53,20 @@ go
 
 CREATE VIEW EngenheiroView AS
 SELECT * FROM Engenheiro
+go
+
+CREATE VIEW ViewEngenheiros AS
+SELECT E.ID_Engenheiro, E.ID_Funcionario, F.Nome, D.Nome as DepartamentoNome
+FROM Engenheiro E
+JOIN Funcionario F ON E.ID_Funcionario = F.ID_Funcionario
+LEFT JOIN Departamento D ON F.ID_Funcionario = D.ID_Gerente;
+go
+
+CREATE VIEW ViewEngenheirosNotManagers AS
+SELECT E.ID_Engenheiro, E.ID_Funcionario, E.Curso, F.Nome, D.Nome as Nome_Departamento
+FROM Engenheiro E
+JOIN Funcionario F ON E.ID_Funcionario = F.ID_Funcionario
+LEFT JOIN Departamento D ON F.ID_Funcionario = D.ID_Gerente
+WHERE D.ID_Gerente IS NULL;
+go
 

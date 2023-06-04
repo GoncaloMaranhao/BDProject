@@ -20,7 +20,8 @@ DROP PROCEDURE AddDepartamento;
 DROP PROCEDURE RemoveDepartamento; 
 DROP PROCEDURE AddEngenheiroManager;
 DROP PROCEDURE RemoveEngenheiroManager;
-
+DROP PROCEDURE SearchEngenheiro;
+--DROP PROCEDURE EngenheirosNotManagers;
 go
 
 
@@ -399,26 +400,32 @@ go
 
 --------------------------------------Departamento-----------------------------
 CREATE PROCEDURE AddDepartamento 
-    @ID_Departamento INT,
     @Nome VARCHAR (256),
     @Orcamento DECIMAL(10, 2),
-    @Tipo VARCHAR(256),
     @TaxaEmissao DECIMAL(10, 2),
     @TaxaReciclagem DECIMAL(10, 2),
     @ResiduoGerado DECIMAL(10, 2)
 AS
 BEGIN
-    INSERT INTO Departamento(ID_Departamento, Nome, Orcamento, Tipo, TaxaEmissao, TaxaReciclagem, ResiduoGerado)
-    VALUES (@ID_Departamento, @Nome, @Orcamento, @Tipo, @TaxaEmissao, @TaxaReciclagem, @ResiduoGerado)
+    INSERT INTO Departamento(ID_Departamento, Nome, Orcamento, TaxaEmissao, TaxaReciclagem, ResiduoGerado)
+    VALUES (dbo.NextDepartamentoID(), @Nome, @Orcamento, @TaxaEmissao, @TaxaReciclagem, @ResiduoGerado)
 END
 go
 
-CREATE PROCEDURE RemoveDepartamento 
-    @ID_Departamento INT
+CREATE PROCEDURE RemoveDepartamento
+    @Nome_Departamento NVARCHAR(128)
 AS
 BEGIN
-    DELETE FROM Departamento WHERE ID_Departamento = @ID_Departamento
+    IF EXISTS (SELECT 1 FROM Departamento WHERE Nome = @Nome_Departamento)
+    BEGIN
+        DELETE FROM Departamento WHERE Nome = @Nome_Departamento
+    END
+    ELSE
+    BEGIN
+        RAISERROR('The department does not exist.', 16, 1)
+    END
 END
+
 go
 
 CREATE PROCEDURE AddEngenheiroManager
@@ -426,17 +433,13 @@ CREATE PROCEDURE AddEngenheiroManager
     @ID_Engenheiro INT
 AS
 BEGIN
-    -- Check if the department already has a manager.
     IF NOT EXISTS (SELECT 1 FROM Departamento WHERE ID_Departamento = @ID_Departamento AND ID_Gerente IS NOT NULL)
     BEGIN
-        -- Check if the person is an engineer.
         IF EXISTS (SELECT 1 FROM Engenheiro WHERE ID_Engenheiro = @ID_Engenheiro)
         BEGIN
-            -- Get the ID_Funcionario of the Engenheiro.
             DECLARE @ID_Funcionario INT;
             SELECT @ID_Funcionario = ID_Funcionario FROM Engenheiro WHERE ID_Engenheiro = @ID_Engenheiro;
 
-            -- Update the department manager with the ID_Funcionario of the Engenheiro.
             UPDATE Departamento
             SET ID_Gerente = @ID_Funcionario
             WHERE ID_Departamento = @ID_Departamento;
@@ -451,7 +454,7 @@ BEGIN
         RAISERROR('The department already has a manager.', 16, 1)
     END
 END
-
+go
 
 CREATE PROCEDURE RemoveEngenheiroManager
     @ID_Departamento INT
@@ -462,3 +465,18 @@ BEGIN
     WHERE ID_Departamento = @ID_Departamento
 END
 go
+
+CREATE PROCEDURE SearchEngenheiro
+    @Nome VARCHAR(256)
+AS
+BEGIN
+    SELECT F.ID_Funcionario, F.Nome, E.ID_Engenheiro, E.Curso, D.Nome as Nome_Departamento
+    FROM Funcionario F
+    INNER JOIN Engenheiro E ON F.ID_Funcionario = E.ID_Funcionario
+    LEFT JOIN Departamento D ON F.ID_Funcionario = D.ID_Gerente
+    WHERE F.Nome LIKE '%' + @Nome + '%' AND F.Type = 'Engenheiro'
+END
+go
+
+
+--------------------------------------NextOne-----------------------------

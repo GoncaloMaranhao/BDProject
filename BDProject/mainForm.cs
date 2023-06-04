@@ -110,6 +110,16 @@ namespace BDProject
                 dataGridView6.DataSource = dt;
             }
 
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM ViewEngenheiros", con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                dataGridView7.DataSource = dt;
+            }
+
             txtID_FuncionarioRemove.Visible = false;
             labelIDRemove.Visible = false;
             btnSubmitRemove.Visible = false;
@@ -291,6 +301,24 @@ namespace BDProject
 
                     dataGridView5.DataSource = dataTable;
                     dataGridView5.Refresh();
+                }
+            }
+        }
+
+        private void RefreshEngenheirosData()
+        {
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                using (var command = new SqlCommand("SELECT * FROM ViewEngenheiros ", conn))
+                using (var adapter = new SqlDataAdapter(command))
+                {
+                    var dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                    dataGridView7.DataSource = dataTable;
+                    dataGridView7.Refresh();
                 }
             }
         }
@@ -930,12 +958,15 @@ namespace BDProject
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand("RemoveDepartamento", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@ID_Departamento", int.Parse(textBox8.Text));
-
                 conn.Open();
-                cmd.ExecuteNonQuery();
+
+                using (SqlCommand cmd = new SqlCommand("RemoveDepartamento", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Nome_Departamento", textBox8.Text);
+
+                    cmd.ExecuteNonQuery();
+                }
             }
 
             ID_Department.Visible = false;
@@ -944,6 +975,51 @@ namespace BDProject
 
             RefreshDepartmentData();
             RefreshEngenheiroData();
+
+        }
+
+        private void textBox9_TextChanged(object sender, EventArgs e)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SearchEngenheiro", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Nome", textBox9.Text);
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+
+                        dataGridView7.DataSource = dt;
+                    }
+                }
+            }
+        }
+
+        private void button8_Click_2(object sender, EventArgs e)
+        {
+            using (SqlConnection sqlCon = new SqlConnection(connectionString))
+            {
+                sqlCon.Open();
+                SqlDataAdapter sqlDa = new SqlDataAdapter("SELECT * FROM ViewEngenheirosNotManagers", sqlCon);
+                DataTable dtbl = new DataTable();
+                sqlDa.Fill(dtbl);
+
+                dataGridView7.DataSource = dtbl;
+            }
+        }
+
+        private void dataGridView7_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void tabPage3_Click(object sender, EventArgs e)
+        {
 
         }
     }

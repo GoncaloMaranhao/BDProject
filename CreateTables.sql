@@ -34,18 +34,15 @@ CREATE TABLE CartaoTrabalho (
     ID_CartaoTrabalho INT PRIMARY KEY,
     Data_Validade DATE,
 	Data_Emissao DATE,
-	Observacoes VARCHAR(64),
-    Estado CHAR(1) CHECK (Estado IN ('A', 'I')),
     ID_Funcionario INT,
     FOREIGN KEY (ID_Funcionario) REFERENCES Funcionario(ID_Funcionario)
 );
 
 CREATE TABLE Departamento (
     ID_Departamento INT PRIMARY KEY,
-	Nome VARCHAR (256),
+	Nome VARCHAR (256) UNIQUE,
 	Orcamento DECIMAL(10, 2),
     ID_Gerente INT,
-    Tipo VARCHAR(256),
     TaxaEmissao DECIMAL(10, 2),
     TaxaReciclagem DECIMAL(10, 2),
     ResiduoGerado DECIMAL(10, 2),
