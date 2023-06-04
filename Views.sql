@@ -6,7 +6,8 @@ DROP VIEW vw_CartaoTrabalho;
 DROP VIEW DepartmentView;
 DROP VIEW EngenheiroView;
 DROP VIEW ViewEngenheiros;
---DROP VIEW ViewEngenheirosNotManagers;
+DROP VIEW ViewEngenheirosNotManagers;
+DROP VIEW FuncionarioView;
 
 go
 CREATE VIEW FuncionarioWithAge AS
@@ -70,3 +71,6 @@ LEFT JOIN Departamento D ON F.ID_Funcionario = D.ID_Gerente
 WHERE D.ID_Gerente IS NULL;
 go
 
+CREATE VIEW FuncionarioView AS
+SELECT * FROM Funcionario
+go

@@ -27,9 +27,9 @@ BEGIN
     DECLARE @BonusPercent DECIMAL(10, 2);
 
     SET @BonusPercent = CASE 
-        WHEN @YearsExperience <= 5 THEN 2.5
+        WHEN @YearsExperience <= 5 THEN 0
         WHEN @YearsExperience <= 10 THEN 5.0
-		WHEN @YearsExperience <= 15 THEN 7.5
+		WHEN @YearsExperience <= 20 THEN 7.5
         ELSE 10.0
     END;
 

@@ -24,7 +24,6 @@ namespace BDProject
 
         private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Hide all fields initially
             labelAdditionalInfo.Visible = false;
             txtAdditionalInfo.Visible = false;
 
@@ -35,7 +34,6 @@ namespace BDProject
             labelTurno.Visible = false;
             lblDataRenovacaoCarta.Visible = false;
 
-            // Depending on the selected type, show the corresponding fields
             string selectedType = cmbType.SelectedItem.ToString();
             if (selectedType == "Engenheiro")
             {
@@ -73,7 +71,7 @@ namespace BDProject
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 con.Open();
-                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Funcionario", con);
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM FuncionarioView", con);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
