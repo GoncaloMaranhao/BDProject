@@ -1,11 +1,5 @@
-use MyLocalDB
-go
-
---select so.name, text
---from sysobjects so, syscomments sc
---where type = 'TR'
---and so.id = sc.id
---and text like 'Funcionario'
+--use MyLocalDB
+--go
 
 DROP TRIGGER trg_Funcionario_Delete_All;
 DROP TRIGGER trg_CartaoTrabalho_Delete;
@@ -22,20 +16,19 @@ AS
 BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
-            DELETE CartaoTrabalho FROM CartaoTrabalho INNER JOIN DELETED ON CartaoTrabalho.ID_Funcionario = DELETED.ID_Funcionario;
-            UPDATE Departamento SET ID_Gerente = NULL FROM Departamento INNER JOIN DELETED ON Departamento.ID_Gerente = DELETED.ID_Funcionario;
-            DELETE Engenheiro FROM Engenheiro INNER JOIN DELETED ON Engenheiro.ID_Funcionario = DELETED.ID_Funcionario;
-            
-            DELETE 
-			FROM AtribuicaoCamiao INNER JOIN Motorista ON AtribuicaoCamiao.ID_Motorista = Motorista.ID_Motorista INNER JOIN DELETED ON Motorista.ID_Funcionario = DELETED.ID_Funcionario;
-            DELETE Motorista FROM Motorista INNER JOIN DELETED ON Motorista.ID_Funcionario = DELETED.ID_Funcionario;
-            
-            UPDATE ProdutoMDF SET ID_Operario = NULL FROM ProdutoMDF INNER JOIN Operario ON ProdutoMDF.ID_Operario = Operario.ID_Operario INNER JOIN DELETED ON Operario.ID_Funcionario = DELETED.ID_Funcionario;
-            
-            DELETE Operario FROM Operario INNER JOIN DELETED ON Operario.ID_Funcionario = DELETED.ID_Funcionario;
-            DELETE UserLogin FROM UserLogin INNER JOIN DELETED ON UserLogin.ID_Funcionario = DELETED.ID_Funcionario;
-            
-            DELETE Funcionario FROM Funcionario INNER JOIN DELETED ON Funcionario.ID_Funcionario = DELETED.ID_Funcionario;
+
+        DELETE CartaoTrabalho FROM CartaoTrabalho WHERE ID_Funcionario IN (SELECT ID_Funcionario FROM DELETED);
+        UPDATE Departamento SET ID_Gerente = NULL WHERE ID_Gerente IN (SELECT ID_Funcionario FROM DELETED);
+        DELETE Engenheiro FROM Engenheiro WHERE ID_Funcionario IN (SELECT ID_Funcionario FROM DELETED);
+
+        DELETE AtribuicaoCamiao FROM AtribuicaoCamiao WHERE ID_Motorista IN (SELECT ID_Motorista FROM Motorista WHERE ID_Funcionario IN (SELECT ID_Funcionario FROM DELETED));
+        DELETE Motorista FROM Motorista WHERE ID_Funcionario IN (SELECT ID_Funcionario FROM DELETED);
+
+        UPDATE ProdutoMDF SET ID_Operario = NULL WHERE ID_Operario IN (SELECT ID_Operario FROM Operario WHERE ID_Funcionario IN (SELECT ID_Funcionario FROM DELETED));
+
+        DELETE Operario FROM Operario WHERE ID_Funcionario IN (SELECT ID_Funcionario FROM DELETED);
+        DELETE Funcionario FROM Funcionario WHERE ID_Funcionario IN (SELECT ID_Funcionario FROM DELETED);
+        
         COMMIT TRANSACTION;
     END TRY
     BEGIN CATCH
@@ -49,6 +42,7 @@ BEGIN
         RAISERROR(@ErrorMsg, @ErrorSeverity, @ErrorState);
     END CATCH
 END;
+
 go
 
 --_Delete CartaoTrabalho

@@ -24,7 +24,12 @@ namespace BDProject
 
         }
 
-        string connectionString = @"Data Source=DESKTOP-814R5P6;Initial Catalog=MyLocalDB;Integrated Security=True";
+        public static String DB_STRING = "tcp:mednat.ieeta.pt\\SQLSERVER,8101";
+        public static String DB_Initial_Catalog = "p1g9";
+        public static String username = "p1g9";
+        public static String password = "TD%Y9g2@85%5@9*n";
+
+        string connectionString = $"Data Source={DB_STRING};Initial Catalog={DB_Initial_Catalog};User ID={username};Password={password}";
 
         private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -231,6 +236,9 @@ namespace BDProject
             label19.Visible = false;
             textBox15.Visible = false;
 
+            button9.Visible = false;
+            btnAddDep.Visible = false;
+
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -346,24 +354,6 @@ namespace BDProject
             }
         }
 
-        private void RefreshEngenheirosData()
-        {
-            using (var conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-
-                using (var command = new SqlCommand("SELECT * FROM ViewEngenheiros ", conn))
-                using (var adapter = new SqlDataAdapter(command))
-                {
-                    var dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-
-                    dataGridView7.DataSource = dataTable;
-                    dataGridView7.Refresh();
-                }
-            }
-        }
-
         private void RefreshEngenheiroData()
         {
             using (var conn = new SqlConnection(connectionString))
@@ -399,10 +389,6 @@ namespace BDProject
                 }
             }
         }
-
-
-
-
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
@@ -1088,20 +1074,7 @@ namespace BDProject
         {
         }
 
-        private void button9_Click_2(object sender, EventArgs e)
-        {
-            textBox10.Visible = true;
-            label12.Visible = true;
-            textBox11.Visible = true;
-            label13.Visible = true;
-            label14.Visible = true;
-            textBox12.Visible = true;
-            label16.Visible = true;
-            dateTimePicker1.Visible = true;
-            label17.Visible = true;
-            dateTimePicker2.Visible = true;
-            button11.Visible = true;
-        }
+
 
         private void button10_Click_1(object sender, EventArgs e)
         {
@@ -1236,6 +1209,11 @@ namespace BDProject
                     dataGridView9.DataSource = dt;
                 }
             }
+        }
+
+        private void button9_Click_2(object sender, EventArgs e)
+        {
+
         }
     }
 

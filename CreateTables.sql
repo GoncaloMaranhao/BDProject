@@ -1,7 +1,5 @@
-use MyLocalDB
-go
-
-EXEC SearchCamiaoByMatricula @Matricula = 'AAA123'
+--use MyLocalDB
+--go
 
 DROP TABLE IF EXISTS AtribuicaoCamiao;
 DROP TABLE IF EXISTS Operario;
@@ -31,6 +29,8 @@ CREATE TABLE Funcionario (
     Type VARCHAR(256) NOT NULL,
     CHECK (Type IN ('Engenheiro', 'Motorista', 'Operario'))
 );
+
+
 
 CREATE TABLE CartaoTrabalho (
     ID_CartaoTrabalho INT PRIMARY KEY,

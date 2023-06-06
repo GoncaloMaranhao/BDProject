@@ -297,7 +297,7 @@
             // labelCartaEspecial
             // 
             this.labelCartaEspecial.AutoSize = true;
-            this.labelCartaEspecial.Location = new System.Drawing.Point(898, 102);
+            this.labelCartaEspecial.Location = new System.Drawing.Point(898, 101);
             this.labelCartaEspecial.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCartaEspecial.Name = "labelCartaEspecial";
             this.labelCartaEspecial.Size = new System.Drawing.Size(115, 25);
@@ -335,7 +335,7 @@
             // labelAdditionalInfo
             // 
             this.labelAdditionalInfo.AutoSize = true;
-            this.labelAdditionalInfo.Location = new System.Drawing.Point(891, 102);
+            this.labelAdditionalInfo.Location = new System.Drawing.Point(898, 99);
             this.labelAdditionalInfo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAdditionalInfo.Name = "labelAdditionalInfo";
             this.labelAdditionalInfo.Size = new System.Drawing.Size(131, 25);
@@ -1746,7 +1746,37 @@
         private TextBox tbIDCartTrab;
         private Label label5;
         private Label label4;
+        private Label label18;
+        private DateTimePicker dateTimePicker2;
+        private DateTimePicker dateTimePicker1;
+        private Label label17;
+        private Label label16;
+        private Label label14;
+        private Label label13;
+        private Label label12;
+        private TextBox textBox14;
+        private TextBox textBox12;
+        private DataGridView dataGridView8;
+        private TextBox textBox11;
+        private TextBox textBox10;
+        private Button button12;
+        private Button button11;
+        private Button button10;
+        private Button button9;
+        private Label label6;
+        private DataGridView dataGridView9;
+        private Label label19;
+        private TextBox textBox15;
+        private Label label15;
+        private TextBox textBox16;
         private TabPage tabPage3;
+        private Button button8;
+        private Label SrchEngenheiroNome;
+        private TextBox textBox9;
+        private TextBox textBox8;
+        private DataGridView dataGridView7;
+        private DataGridView dataGridView6;
+        private Label label11;
         private Label label10;
         private Label label9;
         private Label label8;
@@ -1775,35 +1805,5 @@
         private TextBox textBox2;
         private Button btnRemoveDep;
         private Button btnAddDep;
-        private Label label11;
-        private DataGridView dataGridView6;
-        private TextBox textBox8;
-        private DataGridView dataGridView7;
-        private Label SrchEngenheiroNome;
-        private TextBox textBox9;
-        private Button button8;
-        private Label label18;
-        private DateTimePicker dateTimePicker2;
-        private DateTimePicker dateTimePicker1;
-        private Label label17;
-        private Label label16;
-        private Label label14;
-        private Label label13;
-        private Label label12;
-        private TextBox textBox14;
-        private TextBox textBox12;
-        private DataGridView dataGridView8;
-        private TextBox textBox11;
-        private TextBox textBox10;
-        private Button button12;
-        private Button button11;
-        private Button button10;
-        private Button button9;
-        private Label label6;
-        private DataGridView dataGridView9;
-        private Label label19;
-        private TextBox textBox15;
-        private Label label15;
-        private TextBox textBox16;
     }
 }

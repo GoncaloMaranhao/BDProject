@@ -1,5 +1,5 @@
-use MyLocalDB
-go
+--use MyLocalDB
+--go
 
 DROP PROCEDURE AddFuncionario;
 DROP PROCEDURE RemoveFuncionario;
@@ -478,7 +478,6 @@ BEGIN
 END
 go
 
-
 --------------------------------------HashedPassword-----------------------------
 CREATE PROCEDURE GetHashedPassword
     @Username VARCHAR(256)
@@ -605,6 +604,4 @@ BEGIN
     WHERE Matricula LIKE '%' + @Matricula + '%';
 END;
 go
-
--------------------------------------ProdutoMDF------------------------------------
 

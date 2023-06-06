@@ -1,5 +1,5 @@
-use MyLocalDB
-go
+--use MyLocalDB
+--go
  
 DELETE FROM AtribuicaoCamiao;
 DELETE FROM Encomenda;
@@ -33,6 +33,9 @@ INSERT INTO Departamento VALUES (2, 'Operations', 60000.00, 3,  1.5, 0.6, 12.0);
 INSERT INTO Departamento VALUES (3, 'Logistics', 70000.00, 2, 1.3, 0.7, 15.0);
 INSERT INTO Departamento VALUES (4, 'Quality Control', 80000.00, 4, 1.4, 0.8, 18.0);
 INSERT INTO Departamento VALUES (5, 'HR', 90000.00, 5, 1.1, 0.9, 20.0);
+INSERT INTO Departamento (ID_Departamento, Nome, Orcamento, ID_Gerente, TaxaEmissao, TaxaReciclagem, ResiduoGerado)
+VALUES (6, 'Department Name', 10000, NULL, 0.5, 0.5, 10.0);
+
 
 INSERT INTO Engenheiro VALUES (1, 1, 'Civil Engineering');
 INSERT INTO Engenheiro VALUES (2, 2, 'Electrical Engineering');
@@ -40,7 +43,6 @@ INSERT INTO Engenheiro VALUES (3, 3, 'Mechanical Engineering');
 INSERT INTO Engenheiro VALUES (4, 4, 'Chemical Engineering');
 INSERT INTO Engenheiro VALUES (5, 5, 'Software Engineering');
 INSERT INTO Engenheiro VALUES (6, 6, 'Softw Engineering');
-
 
 INSERT INTO Motorista VALUES (1, 1, '2023-01-01', 'Y');
 INSERT INTO Motorista VALUES (2, 2, '2024-01-01', 'N');

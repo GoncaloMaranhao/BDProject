@@ -1,5 +1,5 @@
-use MyLocalDB
-go
+--use MyLocalDB
+--go
 
 DROP FUNCTION GetNextFuncionarioID;
 DROP FUNCTION dbo.GetBonusPercent;

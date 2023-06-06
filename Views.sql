@@ -1,5 +1,5 @@
-use myLocalDB
-go
+--use myLocalDB
+--go
 
 DROP VIEW FuncionarioWithAge;
 DROP VIEW vw_CartaoTrabalho;

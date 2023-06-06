@@ -14,6 +14,14 @@ namespace BDProject
             textBoxPassword.PasswordChar = '*';
         }
 
+        public static String DB_STRING = "tcp:mednat.ieeta.pt\\SQLSERVER,8101";
+        public static String DB_Initial_Catalog = "p1g9";
+        public static String username = "p1g9";
+        public static String password = "TD%Y9g2@85%5@9*n";
+
+        string connectionString = $"Data Source={DB_STRING};Initial Catalog={DB_Initial_Catalog};User ID={username};Password={password}";
+
+
         private string HashPassword(string password, byte[] salt)
         {
             using (Rfc2898DeriveBytes pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000))
